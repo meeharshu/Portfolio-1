@@ -1,11 +1,10 @@
 'use client';
 
-import { Line, OrbitControls, Sparkles, Stars } from '@react-three/drei';
-import { Canvas, useFrame, useThree } from '@react-three/fiber';
+import { OrbitControls, Sparkles, Stars } from '@react-three/drei';
+import { Canvas, useThree } from '@react-three/fiber';
 import gsap from 'gsap';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
-import { InteractiveObject } from '@/objects/InteractiveObject';
 import { SkillKeyboard } from '@/objects/SkillKeyboard';
 import type { SpatialSection } from '@/data/portfolio';
 
@@ -14,13 +13,6 @@ interface MainSceneProps {
   onSelect: (section: SpatialSection) => void;
   reducedMotion: boolean;
 }
-
-const sectionPositions: Record<'explore' | 'projects' | 'timeline' | 'about', [number, number, number]> = {
-  explore: [-2.8, 0.1, 0],
-  projects: [0, 0.6, -0.25],
-  timeline: [2.8, 0.1, 0],
-  about: [0, -1.7, 0.3],
-};
 
 function CameraRig({ activeSection, reducedMotion }: Pick<MainSceneProps, 'activeSection' | 'reducedMotion'>) {
   const { camera } = useThree();
@@ -65,28 +57,8 @@ function World({ reducedMotion }: { reducedMotion: boolean }) {
         <pointsMaterial size={0.018} color="#e9ece5" transparent opacity={0.5} />
       </points>
       <SkillKeyboard reducedMotion={reducedMotion} />
-      <gridHelper args={[16, 16, '#364039', '#1d241f']} position={[0, -2.45, 0]} rotation={[0, 0, 0]} />
-      <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]}>
-        <planeGeometry args={[30, 30]} />
-        <meshBasicMaterial color="#111312" transparent opacity={0.7} />
-      </mesh>
-      <Line points={[[-5, 1.8, -3], [-2.6, 0.7, -3.8], [0, 1.4, -4.2], [2.8, 0.35, -3.6], [5, 1.5, -3]]} color="#758574" lineWidth={0.8} transparent opacity={0.22} />
-      <Line points={[[-4.5, -0.4, -2.7], [-2.2, 0.3, -3.5], [0.5, -0.2, -4], [3.4, 0.55, -3.3], [4.8, -0.5, -2.7]]} color="#d8ff73" lineWidth={0.5} transparent opacity={0.16} />
     </>
   );
-}
-
-function SceneObjects({ activeSection, onSelect }: Pick<MainSceneProps, 'activeSection' | 'onSelect'>) {
-  const objects = [
-    { section: 'explore' as const, label: 'Explore the field', hint: '01 / ORIENT', color: '#8ac6ff' },
-    { section: 'projects' as const, label: 'Project constellation', hint: '02 / WORK', color: '#d8ff73' },
-    { section: 'timeline' as const, label: 'Follow the line', hint: '03 / TIME', color: '#ff8b67' },
-    { section: 'about' as const, label: 'A little context', hint: '04 / ABOUT', color: '#d9a7ff' },
-  ];
-
-  return objects.map((object) => (
-    <InteractiveObject key={object.section} {...object} position={sectionPositions[object.section]} active={activeSection === object.section} onSelect={() => onSelect(object.section)} />
-  ));
 }
 
 export function MainScene({ activeSection, onSelect, reducedMotion }: MainSceneProps) {
@@ -94,7 +66,6 @@ export function MainScene({ activeSection, onSelect, reducedMotion }: MainSceneP
     <div className="fixed inset-0 z-0 h-screen w-full" aria-hidden="true">
       <Canvas camera={{ position: [0, 0.5, 7.4], fov: 42 }} dpr={[1, 1.7]} gl={{ antialias: true, alpha: false }}>
         <World reducedMotion={reducedMotion} />
-        {activeSection !== 'home' && <SceneObjects activeSection={activeSection} onSelect={onSelect} />}
         <CameraRig activeSection={activeSection} reducedMotion={reducedMotion} />
       </Canvas>
     </div>
