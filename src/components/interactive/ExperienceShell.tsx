@@ -65,15 +65,15 @@ export function ExperienceShell() {
       <MainScene activeSection={activeSection} onSelect={selectSection} reducedMotion={reducedMotion} />
       <div className="grid-fade pointer-events-none fixed inset-0 z-[1]" />
       <main className="relative z-10">
-        <section id="home" data-section="home" className="flex min-h-screen items-end px-6 pb-14 pt-40 sm:px-10 lg:px-16 lg:pb-20">
-          <div className="mx-auto flex w-full max-w-[1500px] items-end justify-between gap-10">
-            <div className="max-w-2xl">
-              <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.3em] text-signal">Harshu / developer & systems thinker</p>
-              <h1 className="font-display text-[clamp(4rem,13vw,11rem)] leading-[0.78] tracking-[-0.045em] text-paper">Make the<br /><em className="text-signal">path</em> visible.</h1>
-              <p className="mt-8 max-w-md text-sm leading-6 text-paper/55 sm:text-base">A spatial portfolio for thoughtful digital tools, curious experiments, and the invisible systems that help people move forward.</p>
-              <button type="button" data-cursor="GO" onClick={() => navigate('explore')} className="pointer-events-auto mt-8 inline-flex items-center gap-4 rounded-full border border-signal/60 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.22em] text-signal transition-all hover:bg-signal hover:text-ink">Enter the field <span className="text-base leading-none">↓</span></button>
+        <section id="home" data-section="home" className="flex min-h-screen items-center px-6 pb-16 pt-36 sm:px-10 lg:px-16">
+          <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
+            <div className="relative z-10 max-w-2xl">
+              <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-paper/60">Hi, I&apos;m Harshu</p>
+              <h1 className="font-sans text-[clamp(4.6rem,10vw,10rem)] font-bold leading-[0.82] tracking-[-0.06em] text-paper">Harshu<br /><span className="text-signal">Vishwakarma</span></h1>
+              <p className="mt-7 text-lg font-medium text-paper/60 sm:text-2xl">A Computer Science Student &amp; Creative Developer</p>
+              <div className="mt-8 flex flex-wrap gap-3"><a href="mailto:meeharshu8686@gmail.com" data-cursor="HIRE" className="rounded-md bg-paper px-7 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-colors hover:bg-signal">Hire me</a><a href="https://github.com/meeharshu8685-dot" target="_blank" rel="noreferrer" data-cursor="OPEN" className="rounded-md border border-white/20 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-signal hover:text-signal">GitHub ↗</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" data-cursor="OPEN" className="rounded-md border border-white/20 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-colors hover:border-signal hover:text-signal">LinkedIn ↗</a></div>
             </div>
-            <div className="hidden max-w-[190px] pb-2 text-right lg:block"><p className="font-mono text-[10px] uppercase leading-5 tracking-[0.18em] text-paper/35">Drag to orbit<br />Select an object<br />Scroll to travel</p></div>
+            <div className="hidden h-[500px] lg:block" />
           </div>
         </section>
 

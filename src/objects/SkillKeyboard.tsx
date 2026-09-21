@@ -1,6 +1,6 @@
 'use client';
 
-import { Html } from '@react-three/drei';
+import { Html, RoundedBox } from '@react-three/drei';
 import { useFrame } from '@react-three/fiber';
 import { useMemo, useRef, useState } from 'react';
 import * as THREE from 'three';
@@ -42,5 +42,14 @@ function Key({ label, accent, position, index, reducedMotion }: { label: string;
 
 export function SkillKeyboard({ reducedMotion }: SkillKeyboardProps) {
   const keys = [...skills, { name: 'GSAP', accent: '#ff8b67' }, { name: 'R3F', accent: '#d9a7ff' }, { name: 'SQL', accent: '#8ac6ff' }, { name: 'UI/UX', accent: '#f6d06f' }];
-  return <group rotation={[-0.25, 0.18, 0.05]} position={[0, 0.05, -0.6]}>{keys.map((skill, index) => { const column = index % 4; const row = Math.floor(index / 4); return <Key key={skill.name} label={skill.name} accent={skill.accent} index={index} reducedMotion={reducedMotion} position={[(column - 1.5) * 1.04, (row - 1) * 1.02, 0]} />; })}</group>;
+  return <group rotation={[-0.38, 0.32, -0.1]} position={[1.9, 0.05, -0.2]} scale={1.16}>
+    <RoundedBox args={[4.9, 0.3, 3.65]} radius={0.22} smoothness={5} position={[0, -0.2, 0]}>
+      <meshStandardMaterial color="#151a24" roughness={0.28} metalness={0.58} />
+    </RoundedBox>
+    <mesh position={[0, -0.03, 0]}>
+      <boxGeometry args={[4.35, 0.08, 3.12]} />
+      <meshBasicMaterial color="#273142" transparent opacity={0.8} />
+    </mesh>
+    {keys.map((skill, index) => { const column = index % 4; const row = Math.floor(index / 4); return <Key key={skill.name} label={skill.name} accent={skill.accent} index={index} reducedMotion={reducedMotion} position={[(column - 1.5) * 1.04, 0.08, (row - 1) * 1.02]} />; })}
+  </group>;
 }

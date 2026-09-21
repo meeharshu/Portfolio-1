@@ -52,8 +52,8 @@ function World({ reducedMotion }: { reducedMotion: boolean }) {
 
   return (
     <>
-      <color attach="background" args={['#111312']} />
-      <fog attach="fog" args={['#111312', 7, 16]} />
+      <color attach="background" args={['#070a12']} />
+      <fog attach="fog" args={['#070a12', 7, 16]} />
       <ambientLight intensity={0.46} />
       <directionalLight position={[4, 6, 4]} intensity={2.3} color="#e9ece5" />
       <pointLight position={[-5, 1, 2]} intensity={16} distance={8} color="#9db8ff" />
@@ -94,7 +94,7 @@ export function MainScene({ activeSection, onSelect, reducedMotion }: MainSceneP
     <div className="fixed inset-0 z-0 h-screen w-full" aria-hidden="true">
       <Canvas camera={{ position: [0, 0.5, 7.4], fov: 42 }} dpr={[1, 1.7]} gl={{ antialias: true, alpha: false }}>
         <World reducedMotion={reducedMotion} />
-        <SceneObjects activeSection={activeSection} onSelect={onSelect} />
+        {activeSection !== 'home' && <SceneObjects activeSection={activeSection} onSelect={onSelect} />}
         <CameraRig activeSection={activeSection} reducedMotion={reducedMotion} />
       </Canvas>
     </div>
