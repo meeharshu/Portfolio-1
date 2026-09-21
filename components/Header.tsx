@@ -6,9 +6,11 @@ interface HeaderProps {
   onAboutClick: () => void;
   onProjectsClick: () => void;
   onContactClick: () => void;
+  onThemeToggle: () => void;
+  isDark: boolean;
 }
 
-export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, onContactClick }) => {
+export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, onContactClick, onThemeToggle, isDark }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMounted, setIsMounted] = useState(false);
@@ -40,6 +42,22 @@ export const Header: React.FC<HeaderProps> = ({ onAboutClick, onProjectsClick, o
       >
         Resume <DownloadIcon className="ml-1.5 w-4 h-4" />
       </a>
+      <button
+        type="button"
+        onClick={onThemeToggle}
+        aria-label={`Switch to ${isDark ? 'light' : 'dark'} theme`}
+        aria-pressed={isDark}
+        className="relative h-10 w-20 overflow-hidden rounded-full border border-neutral-300/70 bg-white/80 shadow-sm transition-transform duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-current focus:ring-offset-2 focus:ring-offset-transparent"
+      >
+        <iframe
+          src="https://app.spline.design/ui/fa0a2b8c-1f52-4046-a873-d4248db89abc?view=preview"
+          title=""
+          aria-hidden="true"
+          tabIndex={-1}
+          className="pointer-events-none absolute left-[-30px] top-[-22px] h-[240px] w-[400px] origin-top-left scale-[0.35] border-0"
+        />
+        <span className="sr-only">{isDark ? 'Dark theme active' : 'Light theme active'}</span>
+      </button>
     </>
   );
 

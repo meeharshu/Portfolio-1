@@ -229,6 +229,8 @@ const App: React.FC = () => {
           onAboutClick={() => scrollTo(aboutRef)}
           onProjectsClick={() => scrollTo(projectsRef)}
           onContactClick={() => scrollTo(contactRef)}
+          onThemeToggle={toggleTheme}
+          isDark={theme === 'dark'}
         />
 
         <main>
