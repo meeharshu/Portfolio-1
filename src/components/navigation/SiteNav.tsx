@@ -16,7 +16,7 @@ export function SiteNav({ activeSection, onNavigate, isLight, onThemeToggle }: S
       <div className="mx-auto flex max-w-[1500px] items-center justify-between rounded-full border border-white/10 bg-ink/65 px-4 py-3 shadow-panel backdrop-blur-xl sm:px-6">
         <button type="button" onClick={() => onNavigate('home')} className="group flex items-center gap-3 text-left" aria-label="Return to home">
           <span className="grid h-8 w-8 place-items-center rounded-full bg-signal font-mono text-xs font-medium text-ink transition-transform group-hover:rotate-12">H.</span>
-          <span className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-paper/70 sm:block">Spatial portfolio</span>
+          <span className="hidden font-mono text-[10px] uppercase tracking-[0.28em] text-paper/70 sm:block">Harshu / developer</span>
         </button>
         <nav aria-label="Primary navigation" className="hidden items-center gap-5 lg:flex">
           {navItems.map((item) => (

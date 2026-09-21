@@ -1,4 +1,4 @@
-export type SpatialSection = 'home' | 'explore' | 'projects' | 'timeline' | 'about' | 'lab' | 'contact';
+export type SpatialSection = 'home' | 'explore' | 'projects' | 'experience' | 'timeline' | 'skills' | 'about' | 'lab' | 'contact';
 
 export interface Project {
   id: string;
@@ -31,6 +31,14 @@ export interface Skill {
   x: string;
   y: string;
   accent: string;
+}
+
+export interface Experience {
+  role: string;
+  company: string;
+  period: string;
+  points: string[];
+  stack: string[];
 }
 
 export const projects: Project[] = [
@@ -144,12 +152,35 @@ export const skills: Skill[] = [
   { name: 'AI / ML', category: 'Exploration', related: ['Python', 'Data'], x: '43%', y: '78%', accent: '#d8ff73' },
 ];
 
+export const experience: Experience[] = [
+  {
+    role: 'Computer Science Student & Independent Builder',
+    company: 'BITS Pilani',
+    period: '2024 - Present',
+    points: [
+      'Building practical products across AI, machine learning, data science, and modern frontend systems.',
+      'Turning coursework and curiosity into shipped experiments, interfaces, and useful tools.',
+      'Learning C and Python while deepening my understanding of how software works beneath the interface.',
+    ],
+    stack: ['Python', 'C', 'React', 'AI / ML', 'GitHub'],
+  },
+  {
+    role: 'Frontend Developer & Project Builder',
+    company: 'Independent projects',
+    period: '2023 - Present',
+    points: [
+      'Designed and shipped portfolio, education, health, productivity, and customer-support experiences.',
+      'Worked across the full product loop: idea, interface, implementation, iteration, and deployment.',
+      'Explored how calm visual systems can make complex information easier to understand.',
+    ],
+    stack: ['Next.js', 'TypeScript', 'React', 'Tailwind', 'Vercel'],
+  },
+];
+
 export const navItems: { label: string; section: SpatialSection }[] = [
   { label: 'Home', section: 'home' },
-  { label: 'Explore', section: 'explore' },
+  { label: 'Tech Stack', section: 'skills' },
+  { label: 'Experience', section: 'experience' },
   { label: 'Projects', section: 'projects' },
-  { label: 'Timeline', section: 'timeline' },
-  { label: 'About', section: 'about' },
-  { label: 'Lab', section: 'lab' },
   { label: 'Contact', section: 'contact' },
 ];
