@@ -6,6 +6,7 @@ import gsap from 'gsap';
 import { useEffect, useMemo, useRef } from 'react';
 import * as THREE from 'three';
 import { InteractiveObject } from '@/objects/InteractiveObject';
+import { SkillKeyboard } from '@/objects/SkillKeyboard';
 import type { SpatialSection } from '@/data/portfolio';
 
 interface MainSceneProps {
@@ -38,7 +39,7 @@ function CameraRig({ activeSection, reducedMotion }: Pick<MainSceneProps, 'activ
   return <OrbitControls ref={controls} makeDefault enablePan={false} minDistance={5} maxDistance={10} minPolarAngle={Math.PI * 0.28} maxPolarAngle={Math.PI * 0.68} enableDamping dampingFactor={0.06} />;
 }
 
-function World() {
+function World({ reducedMotion }: { reducedMotion: boolean }) {
   const points = useMemo(() => {
     const values = new Float32Array(180 * 3);
     for (let i = 0; i < 180; i += 1) {
@@ -63,6 +64,7 @@ function World() {
         <bufferGeometry><bufferAttribute attach="attributes-position" args={[points, 3]} count={points.length / 3} array={points} itemSize={3} /></bufferGeometry>
         <pointsMaterial size={0.018} color="#e9ece5" transparent opacity={0.5} />
       </points>
+      <SkillKeyboard reducedMotion={reducedMotion} />
       <gridHelper args={[16, 16, '#364039', '#1d241f']} position={[0, -2.45, 0]} rotation={[0, 0, 0]} />
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, -2.5, 0]}>
         <planeGeometry args={[30, 30]} />
@@ -91,7 +93,7 @@ export function MainScene({ activeSection, onSelect, reducedMotion }: MainSceneP
   return (
     <div className="fixed inset-0 z-0 h-screen w-full" aria-hidden="true">
       <Canvas camera={{ position: [0, 0.5, 7.4], fov: 42 }} dpr={[1, 1.7]} gl={{ antialias: true, alpha: false }}>
-        <World />
+        <World reducedMotion={reducedMotion} />
         <SceneObjects activeSection={activeSection} onSelect={onSelect} />
         <CameraRig activeSection={activeSection} reducedMotion={reducedMotion} />
       </Canvas>
