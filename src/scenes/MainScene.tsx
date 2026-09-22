@@ -1,0 +1,73 @@
+'use client';
+
+import { OrbitControls, Sparkles, Stars } from '@react-three/drei';
+import { Canvas, useThree } from '@react-three/fiber';
+import gsap from 'gsap';
+import { useEffect, useMemo, useRef } from 'react';
+import * as THREE from 'three';
+import { SkillKeyboard } from '@/objects/SkillKeyboard';
+import type { SpatialSection } from '@/data/portfolio';
+
+interface MainSceneProps {
+  activeSection: SpatialSection;
+  onSelect: (section: SpatialSection) => void;
+  reducedMotion: boolean;
+}
+
+function CameraRig({ activeSection, reducedMotion }: Pick<MainSceneProps, 'activeSection' | 'reducedMotion'>) {
+  const { camera } = useThree();
+  const controls = useRef<any>(null);
+
+  useEffect(() => {
+    const destination = activeSection === 'projects' ? new THREE.Vector3(0, 1.8, 5.4) : new THREE.Vector3(0, 0.5, 7.4);
+    if (reducedMotion) {
+      camera.position.copy(destination);
+      return;
+    }
+    gsap.to(camera.position, { x: destination.x, y: destination.y, z: destination.z, duration: 1.25, ease: 'power3.inOut' });
+    if (controls.current) gsap.to(controls.current.target, { x: 0, y: activeSection === 'about' ? -0.55 : 0, z: 0, duration: 1.25, ease: 'power3.inOut' });
+  }, [activeSection, camera, reducedMotion]);
+
+  return <OrbitControls ref={controls} makeDefault enablePan={false} minDistance={5} maxDistance={10} minPolarAngle={Math.PI * 0.28} maxPolarAngle={Math.PI * 0.68} enableDamping dampingFactor={0.06} />;
+}
+
+function World({ reducedMotion }: { reducedMotion: boolean }) {
+  const points = useMemo(() => {
+    const values = new Float32Array(180 * 3);
+    for (let i = 0; i < 180; i += 1) {
+      values[i * 3] = (Math.random() - 0.5) * 16;
+      values[i * 3 + 1] = (Math.random() - 0.5) * 9;
+      values[i * 3 + 2] = (Math.random() - 0.5) * 8;
+    }
+    return values;
+  }, []);
+
+  return (
+    <>
+      <color attach="background" args={['#f2efe8']} />
+      <fog attach="fog" args={['#f2efe8', 7, 16]} />
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[4, 6, 4]} intensity={2.1} color="#ffffff" />
+      <pointLight position={[-5, 1, 2]} intensity={10} distance={8} color="#d45d3f" />
+      <pointLight position={[4, -2, -1]} intensity={8} distance={7} color="#d9a441" />
+      <Stars radius={45} depth={20} count={220} factor={1.1} saturation={0} fade speed={0.2} />
+      <Sparkles count={35} scale={[10, 5, 7]} size={0.8} speed={0.1} color="#d45d3f" />
+      <points>
+        <bufferGeometry><bufferAttribute attach="attributes-position" args={[points, 3]} count={points.length / 3} array={points} itemSize={3} /></bufferGeometry>
+        <pointsMaterial size={0.018} color="#171717" transparent opacity={0.32} />
+      </points>
+      <SkillKeyboard reducedMotion={reducedMotion} />
+    </>
+  );
+}
+
+export function MainScene({ activeSection, onSelect, reducedMotion }: MainSceneProps) {
+  return (
+    <div className="fixed inset-0 z-0 h-screen w-full" aria-hidden="true">
+      <Canvas camera={{ position: [0, 0.5, 7.4], fov: 42 }} dpr={[1, 1.7]} gl={{ antialias: true, alpha: false }}>
+        <World reducedMotion={reducedMotion} />
+        <CameraRig activeSection={activeSection} reducedMotion={reducedMotion} />
+      </Canvas>
+    </div>
+  );
+}
