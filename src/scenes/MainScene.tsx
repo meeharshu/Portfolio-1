@@ -44,17 +44,17 @@ function World({ reducedMotion }: { reducedMotion: boolean }) {
 
   return (
     <>
-      <color attach="background" args={['#070a12']} />
-      <fog attach="fog" args={['#070a12', 7, 16]} />
-      <ambientLight intensity={0.46} />
-      <directionalLight position={[4, 6, 4]} intensity={2.3} color="#e9ece5" />
-      <pointLight position={[-5, 1, 2]} intensity={16} distance={8} color="#9db8ff" />
-      <pointLight position={[4, -2, -1]} intensity={12} distance={7} color="#d8ff73" />
-      <Stars radius={45} depth={20} count={650} factor={1.3} saturation={0} fade speed={0.35} />
-      <Sparkles count={70} scale={[10, 5, 7]} size={1.2} speed={0.16} color="#d8ff73" />
+      <color attach="background" args={['#f2efe8']} />
+      <fog attach="fog" args={['#f2efe8', 7, 16]} />
+      <ambientLight intensity={0.7} />
+      <directionalLight position={[4, 6, 4]} intensity={2.1} color="#ffffff" />
+      <pointLight position={[-5, 1, 2]} intensity={10} distance={8} color="#d45d3f" />
+      <pointLight position={[4, -2, -1]} intensity={8} distance={7} color="#d9a441" />
+      <Stars radius={45} depth={20} count={220} factor={1.1} saturation={0} fade speed={0.2} />
+      <Sparkles count={35} scale={[10, 5, 7]} size={0.8} speed={0.1} color="#d45d3f" />
       <points>
         <bufferGeometry><bufferAttribute attach="attributes-position" args={[points, 3]} count={points.length / 3} array={points} itemSize={3} /></bufferGeometry>
-        <pointsMaterial size={0.018} color="#e9ece5" transparent opacity={0.5} />
+        <pointsMaterial size={0.018} color="#171717" transparent opacity={0.32} />
       </points>
       <SkillKeyboard reducedMotion={reducedMotion} />
     </>

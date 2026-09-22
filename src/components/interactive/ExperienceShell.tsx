@@ -12,7 +12,7 @@ export function ExperienceShell() {
   const [selectedProject, setSelectedProject] = useState<Project>();
   const [selectedMilestone, setSelectedMilestone] = useState<Milestone>();
   const [selectedExperience, setSelectedExperience] = useState<Experience>();
-  const [isLight, setIsLight] = useState(false);
+  const [isLight, setIsLight] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isIntroVisible, setIsIntroVisible] = useState(true);
 
@@ -56,7 +56,7 @@ export function ExperienceShell() {
   };
 
   return (
-    <div className={`noise relative overflow-x-clip ${isLight ? 'bg-[#dfe5dc] text-ink' : 'bg-ink text-paper'}`}>
+    <div className="theme-light noise relative overflow-x-clip bg-ink text-paper">
       <div className={`pointer-events-none fixed inset-0 z-[60] grid place-items-center bg-ink transition-opacity duration-700 ${isIntroVisible ? 'opacity-100' : 'opacity-0'}`} aria-hidden={!isIntroVisible}>
         <div className={`text-center transition-transform duration-700 ${isIntroVisible ? 'translate-y-0' : '-translate-y-4'}`}><p className="font-mono text-[10px] uppercase tracking-[0.3em] text-signal">H / 2026</p><p className="mt-4 font-display text-5xl text-paper">Build with clarity.</p></div>
       </div>
@@ -68,8 +68,8 @@ export function ExperienceShell() {
         <section id="home" data-section="home" className="flex min-h-screen items-center px-6 pb-16 pt-36 sm:px-10 lg:px-16">
           <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">
             <div className="relative z-10 max-w-2xl">
-              <p className="mb-5 font-mono text-xs uppercase tracking-[0.28em] text-paper/60">Hi, I&apos;m Harshu</p>
-              <h1 className="font-sans text-[clamp(4.6rem,10vw,9.5rem)] font-bold leading-[0.82] tracking-[-0.06em] text-paper">Harshu<br /><span className="text-signal">Vishwakarma</span></h1>
+              <p className="reveal-up mb-5 font-mono text-xs uppercase tracking-[0.28em] text-paper/60">Hi, I&apos;m Harshu</p>
+              <h1 className="reveal-up font-display text-[clamp(4rem,9vw,8.5rem)] font-bold leading-[0.86] tracking-[-0.055em] text-paper">Harshu<br /><span className="text-signal">Vishwakarma</span></h1>
               <p className="mt-7 max-w-xl text-lg font-medium text-paper/70 sm:text-2xl">I design and build digital products that are useful, clear, and built to feel effortless for real people.</p>
               <div className="mt-8 flex flex-wrap gap-3"><a href="mailto:meeharshu8686@gmail.com" data-cursor="HIRE" className="rounded-full bg-paper px-7 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-ink transition-all duration-200 hover:-translate-y-0.5 hover:bg-signal">Hire me</a><a href="https://github.com/meeharshu8685-dot" target="_blank" rel="noreferrer" data-cursor="OPEN" className="rounded-full border border-white/20 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-all duration-200 hover:-translate-y-0.5 hover:border-signal hover:text-signal">GitHub ↗</a><a href="https://www.linkedin.com/" target="_blank" rel="noreferrer" data-cursor="OPEN" className="rounded-full border border-white/20 px-5 py-3 font-mono text-[10px] uppercase tracking-[0.2em] text-paper transition-all duration-200 hover:-translate-y-0.5 hover:border-signal hover:text-signal">LinkedIn ↗</a></div>
             </div>
