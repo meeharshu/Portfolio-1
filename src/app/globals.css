@@ -13,10 +13,19 @@
 
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; background: var(--ink); }
-body { margin: 0; background: var(--ink); color: var(--paper); font-family: var(--font-sans); }
+body {
+  margin: 0;
+  background:
+    radial-gradient(circle at top, rgba(216,255,115,0.08), transparent 32%),
+    var(--ink);
+  color: var(--paper);
+  font-family: var(--font-sans);
+}
 button, a { -webkit-tap-highlight-color: transparent; }
 button:focus-visible, a:focus-visible { outline: 2px solid var(--signal); outline-offset: 4px; }
 ::selection { color: var(--ink); background: var(--signal); }
+
+section { scroll-margin-top: 7rem; }
 
 .noise::after {
   content: '';
