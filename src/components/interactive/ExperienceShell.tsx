@@ -2,9 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import { DetailPanel } from '@/components/ui/DetailPanel';
-import { CursorFollower } from '@/components/ui/CursorFollower';
 import { SiteNav } from '@/components/navigation/SiteNav';
-import { MainScene } from '@/scenes/MainScene';
 import { experience, milestones, projects, skills, type Experience, type Milestone, type Project, type SpatialSection } from '@/data/portfolio';
 
 export function ExperienceShell() {
@@ -12,7 +10,6 @@ export function ExperienceShell() {
   const [selectedProject, setSelectedProject] = useState<Project>();
   const [selectedMilestone, setSelectedMilestone] = useState<Milestone>();
   const [selectedExperience, setSelectedExperience] = useState<Experience>();
-  const [isLight, setIsLight] = useState(true);
   const [reducedMotion, setReducedMotion] = useState(false);
   const [isIntroVisible, setIsIntroVisible] = useState(true);
 
@@ -56,14 +53,11 @@ export function ExperienceShell() {
   };
 
   return (
-    <div className="theme-light noise relative overflow-x-clip bg-ink text-paper">
+    <div className="site-shell relative overflow-x-clip bg-ink text-paper">
       <div className={`pointer-events-none fixed inset-0 z-[60] grid place-items-center bg-ink transition-opacity duration-700 ${isIntroVisible ? 'opacity-100' : 'opacity-0'}`} aria-hidden={!isIntroVisible}>
         <div className={`text-center transition-transform duration-700 ${isIntroVisible ? 'translate-y-0' : '-translate-y-4'}`}><p className="font-mono text-[10px] uppercase tracking-[0.3em] text-signal">H / 2026</p><p className="mt-4 font-display text-5xl text-paper">Build with clarity.</p></div>
       </div>
-      <CursorFollower />
-      <SiteNav activeSection={activeSection} onNavigate={navigate} isLight={isLight} onThemeToggle={() => setIsLight((value) => !value)} />
-      <MainScene activeSection={activeSection} onSelect={selectSection} reducedMotion={reducedMotion} />
-      <div className="grid-fade pointer-events-none fixed inset-0 z-[1]" />
+      <SiteNav activeSection={activeSection} onNavigate={navigate} />
       <main className="relative z-10">
         <section id="home" data-section="home" className="flex min-h-screen items-center px-6 pb-16 pt-36 sm:px-10 lg:px-16">
           <div className="mx-auto grid w-full max-w-[1500px] items-center gap-8 lg:grid-cols-[0.9fr_1.1fr]">

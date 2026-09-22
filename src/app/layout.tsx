@@ -1,8 +1,8 @@
 import type { Metadata } from 'next';
-import { DM_Mono, IBM_Plex_Sans, Syne } from 'next/font/google';
+import { DM_Mono, IBM_Plex_Sans, Manrope } from 'next/font/google';
 import './globals.css';
 
-const display = Syne({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-display', display: 'swap' });
+const display = Manrope({ subsets: ['latin'], weight: ['400', '500', '600', '700', '800'], variable: '--font-display', display: 'swap' });
 const sans = IBM_Plex_Sans({ subsets: ['latin'], weight: ['400', '500', '600', '700'], variable: '--font-sans', display: 'swap' });
 const mono = DM_Mono({ subsets: ['latin'], weight: ['400', '500'], variable: '--font-mono', display: 'swap' });
 

@@ -5,10 +5,10 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        ink: '#f2efe8',
-        paper: '#171717',
-        moss: '#68645e',
-        signal: '#d45d3f',
+        ink: '#f8f9fb',
+        paper: '#111827',
+        moss: '#64748b',
+        signal: '#2563eb',
       },
       fontFamily: {
         display: ['var(--font-display)', 'sans-serif'],
@@ -16,7 +16,7 @@ const config: Config = {
         mono: ['var(--font-mono)', 'monospace'],
       },
       boxShadow: {
-        panel: '8px 8px 0 rgba(23, 23, 23, 0.12)',
+        panel: '0 18px 45px rgba(15, 23, 42, 0.08)',
       },
     },
   },
