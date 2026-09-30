@@ -113,9 +113,9 @@ export default function Hero() {
             </p>
             
             <GlassyButton href="#work" className="mt-4 md:mt-0">
-              <span className="font-display text-lg tracking-wide uppercase font-bold text-text-primary">Explore Work</span>
-              <div className="w-10 h-10 rounded-full bg-accent/20 text-accent flex items-center justify-center transition-colors">
-                <ArrowDownRight size={20} className="group-hover:rotate-[-45deg] transition-transform duration-500" />
+              <span className="font-display text-xs sm:text-sm tracking-wider uppercase font-semibold text-text-primary">Explore Work</span>
+              <div className="w-7 h-7 rounded-full bg-accent/20 text-accent flex items-center justify-center transition-colors">
+                <ArrowDownRight size={14} className="group-hover:rotate-[-45deg] transition-transform duration-500" />
               </div>
             </GlassyButton>
           </motion.div>

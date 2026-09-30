@@ -37,11 +37,11 @@ export default function GlassyButton({
       <a
         ref={buttonRef as any}
         onMouseMove={handleMouseMove}
-        className={`glassy-button inline-block ${className || ''}`}
+        className={`glassy-button group inline-flex items-center justify-center ${className || ''}`}
         style={style}
         {...rest}
       >
-        <span className="flex items-center gap-4">{children}</span>
+        <span className="inline-flex items-center justify-center gap-2.5">{children}</span>
       </a>
     );
   }
@@ -50,11 +50,11 @@ export default function GlassyButton({
     <button
       ref={buttonRef}
       onMouseMove={handleMouseMove}
-      className={`glassy-button ${className || ''}`}
+      className={`glassy-button group inline-flex items-center justify-center ${className || ''}`}
       style={style}
       {...props}
     >
-      <span className="flex items-center gap-4">{children}</span>
+      <span className="inline-flex items-center justify-center gap-2.5">{children}</span>
     </button>
   );
 }

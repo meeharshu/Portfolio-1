@@ -63,11 +63,11 @@ export default function Contact() {
               href={`mailto:${SOCIAL_LINKS.email}`}
               surfaceColor="hsl(197, 88%, 58%)"
             >
-              <span className="font-display text-xl sm:text-2xl font-medium tracking-wide text-text-primary group-hover:text-bg transition-colors duration-500">
+              <span className="font-display text-sm sm:text-base md:text-lg font-medium tracking-normal lowercase text-text-primary group-hover:text-bg transition-colors duration-300">
                 {SOCIAL_LINKS.email}
               </span>
-              <div className="flex items-center justify-center transition-colors duration-500">
-                <ArrowUpRight size={28} className="text-text-primary group-hover:text-bg group-hover:rotate-45 transition-all duration-500" />
+              <div className="flex items-center justify-center transition-colors duration-300">
+                <ArrowUpRight size={18} className="text-text-primary group-hover:text-bg group-hover:rotate-45 transition-all duration-300" />
               </div>
             </GlassyButton>
           </motion.div>

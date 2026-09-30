@@ -490,15 +490,15 @@ body {
 
 /* ── Glassy Button ──────────────────────────────────────────────────── */
 .glassy-button {
-  --_padding: 0.75rem 1.5rem;
+  --_padding: 0.55rem 1.25rem;
   --_transition-speed: 200ms;
   --_hover-opacity: 0.4;
   --_pressed-opacity: 0.15;
   --_hover-blurriness: 5px;
   --_pressed-blurriness: 10px;
   --_frostiness: 0.3;
-  --_hover-offset: 0.5rem;
-  --_pressed-offset: 0.25rem;
+  --_hover-offset: 0.25rem;
+  --_pressed-offset: 0.125rem;
   --_motion-factor: 0.1;
   --_surface: var(--color-accent);
 
@@ -512,12 +512,11 @@ body {
   border-radius: 9999px; /* Pill shape */
   background-color: transparent;
   position: relative;
-  text-transform: uppercase;
   letter-spacing: 0.03em;
   font-size: 0.8125rem;
 }
 
-.glassy-button span {
+.glassy-button > span {
   display: block;
   overflow: hidden;
   padding: var(--_padding);
@@ -531,7 +530,7 @@ body {
     -webkit-backdrop-filter var(--_transition-speed);
 }
 
-.glassy-button span::before {
+.glassy-button > span::before {
   content: "";
   position: absolute;
   inset: 0;
@@ -553,8 +552,8 @@ body {
   animation: glassy-exit forwards var(--_transition-speed);
 }
 
-.glassy-button:hover span,
-.glassy-button:focus-visible span {
+.glassy-button:hover > span,
+.glassy-button:focus-visible > span {
   outline: 1px solid hsl(0 0% 100% / 0.7);
   background-color: hsl(0 0% 100% / var(--_hover-opacity));
   -webkit-backdrop-filter: blur(var(--_hover-blurriness));
@@ -562,8 +561,8 @@ body {
   translate: 0 calc(var(--_hover-offset) * -1);
 }
 
-.glassy-button:hover span::before,
-.glassy-button:focus-visible span::before {
+.glassy-button:hover > span::before,
+.glassy-button:focus-visible > span::before {
   opacity: var(--_frostiness);
 }
 
@@ -574,7 +573,7 @@ body {
   animation: glassy-enter forwards var(--_transition-speed);
 }
 
-.glassy-button:active span {
+.glassy-button:active > span {
   -webkit-backdrop-filter: blur(var(--_pressed-blurriness));
   backdrop-filter: blur(var(--_pressed-blurriness));
   background-color: hsl(0 0% 100% / var(--_pressed-opacity));
