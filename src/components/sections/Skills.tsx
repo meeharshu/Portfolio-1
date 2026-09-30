@@ -46,20 +46,20 @@ export default function Skills() {
               </div>
 
               {/* Skills List */}
-              <div className="flex flex-wrap gap-x-8 gap-y-4 md:gap-x-12 md:gap-y-6">
+              <div className="flex overflow-x-auto whitespace-nowrap gap-x-4 md:gap-x-6 pb-6 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
                 {category.skills.map((skill) => (
                   <button
                     key={skill.name}
-                    className="group relative text-left outline-none"
+                    className="group relative text-left outline-none shrink-0 px-6 py-4 bg-surface/30 backdrop-blur-md border border-border/50 rounded-2xl hover:bg-surface/60 hover:border-accent/50 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
                     onMouseEnter={() => setActiveSkill(skill)}
                     onMouseLeave={() => setActiveSkill(null)}
                     onFocus={() => setActiveSkill(skill)}
                     onBlur={() => setActiveSkill(null)}
                   >
-                    <span className="text-lg md:text-xl font-medium text-text-secondary group-hover:text-text-primary transition-colors duration-300">
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    <span className="relative z-10 text-lg md:text-xl font-medium text-text-secondary group-hover:text-text-primary transition-colors duration-300 block truncate">
                       {skill.name}
                     </span>
-                    <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
                   </button>
                 ))}
               </div>
@@ -88,14 +88,14 @@ export default function Skills() {
                 {activeSkill.proficiency}
               </span>
             </div>
-            <h4 className="text-xl font-display font-bold text-text-primary">
+            <h4 className="text-xl font-display font-bold text-text-primary break-words whitespace-normal">
               {activeSkill.name}
             </h4>
-            <p className="text-sm text-text-secondary leading-relaxed">
+            <p className="text-sm text-text-secondary leading-relaxed break-words whitespace-normal">
               {activeSkill.description}
             </p>
             <div className="w-full h-[1px] bg-border my-1" />
-            <p className="text-xs text-text-muted">
+            <p className="text-xs text-text-muted break-words whitespace-normal">
               <span className="text-text-secondary">Applies to:</span> {activeSkill.application}
             </p>
           </motion.div>
@@ -124,13 +124,13 @@ export default function Skills() {
                 {activeSkill.proficiency}
               </span>
             </div>
-            <h4 className="text-2xl font-display font-bold text-text-primary mb-3">
+            <h4 className="text-2xl font-display font-bold text-text-primary mb-3 break-words whitespace-normal">
               {activeSkill.name}
             </h4>
-            <p className="text-base text-text-secondary leading-relaxed mb-4">
+            <p className="text-base text-text-secondary leading-relaxed mb-4 break-words whitespace-normal">
               {activeSkill.description}
             </p>
-            <p className="text-sm text-text-muted bg-surface p-3 rounded">
+            <p className="text-sm text-text-muted bg-surface p-3 rounded break-words whitespace-normal">
               <span className="text-text-secondary block mb-1 font-medium">Core Application:</span> 
               {activeSkill.application}
             </p>
