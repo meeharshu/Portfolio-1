@@ -71,9 +71,9 @@ export default function Journey() {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    transition={{ duration: 0.8, ease: "easeOut" }}
-                    className="flex-1 bg-surface border border-border p-6 md:p-8 rounded-3xl ml-12 sm:ml-0 relative"
+                    className="group flex-1 bg-surface border border-border p-6 md:p-8 rounded-3xl ml-12 sm:ml-0 relative hover:border-accent/50 transition-colors duration-300"
                   >
+                    <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
                     {/* Mobile Timeline Dot & Line */}
                     <div className="sm:hidden absolute left-[-48px] top-6 w-8 h-8 bg-bg rounded-full border border-border flex items-center justify-center z-10">
                       <div className={`w-3 h-3 rounded-full ${TYPE_COLORS[item.type]}`} />
@@ -85,20 +85,34 @@ export default function Journey() {
                       {item.year}
                     </div>
 
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className={`w-2 h-2 rounded-full ${TYPE_COLORS[item.type]}`} />
-                      <span className="text-xs uppercase tracking-widest font-medium text-text-muted">
-                        {TYPE_LABELS[item.type]}
-                      </span>
+                    <div className="flex flex-col h-full justify-between">
+                      <div>
+                        <div className="flex items-center gap-3 mb-4">
+                          <span className={`w-2 h-2 rounded-full ${TYPE_COLORS[item.type]}`} />
+                          <span className="text-xs uppercase tracking-widest font-medium text-text-muted">
+                            {TYPE_LABELS[item.type]}
+                          </span>
+                        </div>
+                        
+                        <h3 className="text-xl md:text-2xl font-display font-bold text-text-primary mb-4 group-hover:text-accent transition-colors duration-300">
+                          {item.title}
+                        </h3>
+                        
+                        <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-6">
+                          {item.description}
+                        </p>
+                      </div>
+
+                      {item.tags && item.tags.length > 0 && (
+                        <div className="flex flex-wrap gap-2 pt-4 border-t border-border/50">
+                          {item.tags.map((tag) => (
+                            <span key={tag} className="text-xs font-medium text-text-muted bg-bg px-2 py-1 rounded-md border border-border">
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                    
-                    <h3 className="text-xl md:text-2xl font-display font-bold text-text-primary mb-4">
-                      {item.title}
-                    </h3>
-                    
-                    <p className="text-text-secondary text-base md:text-lg leading-relaxed">
-                      {item.description}
-                    </p>
                   </motion.div>
                 </div>
               );

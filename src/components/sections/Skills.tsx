@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { SKILL_CATEGORIES } from '../../data';
 import SectionHeading from '../ui/SectionHeading';
+import * as LucideIcons from 'lucide-react';
 
 export default function Skills() {
   return (
@@ -20,9 +21,17 @@ export default function Skills() {
                 className="flex flex-col gap-6"
               >
                 <div className="w-12 h-[2px] bg-border" />
-                <h3 className="text-xl md:text-2xl font-display font-bold text-text-primary">
-                  {category.title}
-                </h3>
+                <div className="flex items-center gap-3">
+                  {(() => {
+                    // map icon string to Lucide component name (e.g. 'code' -> 'Code')
+                    const iconName = category.icon.charAt(0).toUpperCase() + category.icon.slice(1);
+                    const IconComponent = (LucideIcons as any)[iconName] || LucideIcons.Terminal;
+                    return <IconComponent size={24} className="text-accent" />;
+                  })()}
+                  <h3 className="text-xl md:text-2xl font-display font-bold text-text-primary">
+                    {category.title}
+                  </h3>
+                </div>
                 
                 <ul className="flex flex-col gap-4 mt-2">
                   {category.skills.map((skill, i) => (

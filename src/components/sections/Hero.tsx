@@ -1,6 +1,6 @@
 import { useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { ArrowDownRight } from 'lucide-react';
+import { ArrowDownRight, Globe } from 'lucide-react';
 import MagneticButton from '../ui/MagneticButton';
 import { PROFILE_DATA } from '../../data';
 
@@ -10,38 +10,47 @@ export default function Hero() {
   const containerRef = useRef<HTMLDivElement>(null);
   
   const { scrollY } = useScroll();
-  const y1 = useTransform(scrollY, [0, 1000], [0, 200]);
-  const y2 = useTransform(scrollY, [0, 1000], [0, -100]);
-  const opacity = useTransform(scrollY, [0, 500], [1, 0]);
+  const y1 = useTransform(scrollY, [0, 1000], [0, 300]);
+  const y2 = useTransform(scrollY, [0, 1000], [0, -150]);
+  const opacity = useTransform(scrollY, [0, 400], [1, 0]);
 
-  const textVariants = {
-    hidden: { opacity: 0, y: 50 },
-    visible: (i: number) => ({
+  // Premium staggered 3D word reveal
+  const container = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.15,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
+  const wordAnim = {
+    hidden: { opacity: 0, y: 80, rotateX: -60, filter: 'blur(12px)' },
+    visible: {
       opacity: 1,
       y: 0,
-      transition: {
-        delay: i * 0.1,
-        duration: 0.8,
-        ease: "easeOut" as any,
-      },
-    }),
+      rotateX: 0,
+      filter: 'blur(0px)',
+      transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as any },
+    },
+  };
+
+  const fadeAnim = {
+    hidden: { opacity: 0, y: 20 },
+    visible: { opacity: 1, y: 0, transition: { duration: 1, delay: 1, ease: 'easeOut' as any } },
   };
 
   return (
     <section 
       id="home" 
       ref={containerRef}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-20"
+      className="relative min-h-screen w-full flex items-center overflow-hidden pt-20"
     >
       {/* 3D Canvas Background */}
       <div className="absolute inset-0 z-0">
-        <Suspense
-          fallback={
-            <div className="w-full h-full flex items-center justify-center">
-              <div className="w-24 h-24 rounded-full border border-border animate-pulse" />
-            </div>
-          }
-        >
+        <Suspense fallback={<div className="w-full h-full bg-bg" />}>
           <HeroScene />
         </Suspense>
       </div>
@@ -49,63 +58,71 @@ export default function Hero() {
       <div className="container relative z-10 w-full h-full flex flex-col justify-center px-4 sm:px-6">
         <motion.div 
           style={{ y: y1, opacity }}
-          className="flex flex-col gap-6 w-full max-w-5xl mx-auto"
+          className="flex flex-col w-full max-w-7xl mx-auto"
         >
+          {/* Top Metadata */}
           <motion.div 
-            custom={0}
             initial="hidden"
             animate="visible"
-            variants={textVariants}
-            className="flex items-center gap-4"
+            variants={fadeAnim}
+            className="flex flex-col md:flex-row justify-between items-start md:items-end w-full mb-8 md:mb-16 gap-6"
           >
-            <div className="w-12 h-[2px] bg-accent" />
-            <span className="text-accent uppercase tracking-widest text-sm font-medium">
-              Portfolio {new Date().getFullYear()}
-            </span>
+            <div className="flex items-center gap-3 bg-surface/50 backdrop-blur-md border border-border px-5 py-2.5 rounded-full shadow-sm">
+              <span className="relative flex h-2.5 w-2.5">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent opacity-75"></span>
+                <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-accent"></span>
+              </span>
+              <span className="text-sm font-medium text-text-primary tracking-wide">Available for new opportunities</span>
+            </div>
+            
+            <div className="flex items-center gap-2 text-text-muted">
+              <Globe size={16} />
+              <span className="text-sm tracking-wider uppercase font-medium">Remote / Worldwide</span>
+            </div>
           </motion.div>
 
-          <h1 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-bold leading-[0.9] tracking-tighter text-text-primary">
-            <motion.span 
-              custom={1}
-              initial="hidden"
-              animate="visible"
-              variants={textVariants}
-              className="block"
-            >
-              Creative
-            </motion.span>
-            <motion.span 
-              custom={2}
-              initial="hidden"
-              animate="visible"
-              variants={textVariants}
-              className="block text-transparent bg-clip-text bg-gradient-to-r from-text-primary to-text-muted"
-            >
-              Engineer
-            </motion.span>
-          </h1>
-
-          <motion.div 
-            custom={3}
+          <motion.h1 
+            variants={container}
             initial="hidden"
             animate="visible"
-            variants={textVariants}
-            className="grid grid-cols-1 md:grid-cols-2 gap-8 mt-8"
+            className="text-[12vw] md:text-[8vw] lg:text-[8.5rem] font-display font-bold leading-[0.85] tracking-tighter text-text-primary uppercase"
+            style={{ perspective: "1000px" }}
           >
-            <p className="text-xl md:text-2xl text-text-secondary max-w-md font-light leading-relaxed">
-              Hello, I'm {PROFILE_DATA.name}. Bridging the gap between design and robust engineering.
+            <div className="overflow-hidden">
+              <motion.span variants={wordAnim} className="block origin-bottom">Creative</motion.span>
+            </div>
+            <div className="overflow-hidden flex items-center gap-4 md:gap-8">
+              <motion.div variants={fadeAnim} className="hidden md:block w-24 lg:w-40 h-[8px] lg:h-[12px] bg-accent mt-4" />
+              <motion.span 
+                variants={wordAnim} 
+                className="block text-transparent bg-clip-text bg-gradient-to-r from-text-primary via-text-muted to-text-primary origin-bottom"
+              >
+                Developer
+              </motion.span>
+            </div>
+          </motion.h1>
+
+          <motion.div 
+            initial="hidden"
+            animate="visible"
+            variants={fadeAnim}
+            className="flex flex-col md:flex-row justify-between items-start md:items-center mt-12 md:mt-24 gap-8"
+          >
+            <p className="text-lg md:text-xl text-text-secondary max-w-md font-light leading-relaxed">
+              Hi, I'm {PROFILE_DATA.name}. I craft premium, interactive web experiences that bridge the gap between profound design and robust engineering.
             </p>
             
-            <div className="flex items-center md:justify-end gap-6">
-              <MagneticButton>
-                <a 
-                  href="#work" 
-                  className="flex items-center gap-2 px-8 py-4 bg-accent text-bg font-medium rounded-full hover:bg-white transition-colors duration-300"
-                >
-                  Explore Work <ArrowDownRight size={18} />
-                </a>
-              </MagneticButton>
-            </div>
+            <MagneticButton>
+              <a 
+                href="#work" 
+                className="group flex items-center gap-4 px-8 py-5 bg-text-primary text-bg font-bold rounded-full hover:bg-accent hover:text-bg transition-colors duration-500 overflow-hidden relative"
+              >
+                <span className="relative z-10 font-display text-lg tracking-wide uppercase">Explore Work</span>
+                <div className="relative z-10 w-10 h-10 rounded-full bg-bg/20 flex items-center justify-center group-hover:bg-bg/40 transition-colors">
+                  <ArrowDownRight size={20} className="group-hover:rotate-[-45deg] transition-transform duration-500" />
+                </div>
+              </a>
+            </MagneticButton>
           </motion.div>
         </motion.div>
       </div>
@@ -113,19 +130,12 @@ export default function Hero() {
       {/* Scroll indicator */}
       <motion.div 
         style={{ y: y2, opacity }}
-        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-10"
+        className="absolute bottom-10 left-1/2 -translate-x-1/2 flex flex-col items-center gap-4 z-10"
       >
-        <span className="text-xs uppercase tracking-widest text-text-muted font-medium">Scroll</span>
-        <div className="w-[1px] h-12 bg-border relative overflow-hidden">
+        <div className="w-[1px] h-20 bg-border relative overflow-hidden">
           <motion.div 
-            animate={{ 
-              y: ["-100%", "100%"]
-            }}
-            transition={{
-              duration: 1.5,
-              repeat: Infinity,
-              ease: "linear"
-            }}
+            animate={{ y: ["-100%", "100%"] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "circInOut" }}
             className="absolute top-0 left-0 w-full h-full bg-accent"
           />
         </div>

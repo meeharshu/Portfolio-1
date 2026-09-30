@@ -129,40 +129,37 @@ export default function Work() {
             <h3 className="text-2xl font-display font-bold text-text-primary mb-12">
               Other Explorations
             </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="flex flex-col border-t border-border mt-8">
               {others.map((project, i) => (
                 <motion.a
                   key={project.id}
                   href={project.liveUrl || project.sourceUrl || '#'}
                   target="_blank"
                   rel="noreferrer"
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true, margin: "-50px" }}
-                  transition={{ duration: 0.6, delay: i * 0.1 }}
-                  className="group block p-8 bg-bg-card border border-border rounded-3xl hover:border-accent hover:bg-surface transition-all duration-300"
+                  transition={{ duration: 0.5, delay: i * 0.1 }}
+                  className="group flex flex-col md:flex-row md:items-center justify-between py-6 md:py-8 border-b border-border hover:bg-surface/30 transition-colors px-4 -mx-4 rounded-xl"
                 >
-                  <div className="flex justify-between items-start mb-6">
-                    <div className="w-12 h-12 rounded-full bg-accent-dim flex items-center justify-center text-accent">
-                      {project.id === 'work-4' ? (
-                        <SiGithub size={24} />
-                      ) : (
-                        <ArrowUpRight size={24} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-                      )}
-                    </div>
+                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-12 lg:gap-24">
+                    <span className="text-text-muted text-sm font-medium w-12">{project.year}</span>
+                    <h4 className="text-2xl md:text-3xl font-display font-bold text-text-primary group-hover:text-accent transition-colors">
+                      {project.title}
+                    </h4>
                   </div>
-                  <h4 className="text-xl md:text-2xl font-display font-bold text-text-primary mb-3">
-                    {project.title}
-                  </h4>
-                  <p className="text-text-muted text-sm md:text-base mb-6 line-clamp-3">
-                    {project.description}
-                  </p>
-                  <div className="flex flex-wrap gap-2">
-                    {project.technologies.slice(0, 3).map((tag) => (
-                      <span key={tag} className="text-xs font-medium text-text-secondary">
-                        {tag}
-                      </span>
-                    ))}
+                  
+                  <div className="flex items-center justify-between mt-4 md:mt-0 w-full md:w-auto md:flex-1 md:justify-end gap-8">
+                    <div className="flex flex-wrap gap-2 md:gap-4 justify-start md:justify-end max-w-sm">
+                      {project.technologies.slice(0, 3).map((tag) => (
+                        <span key={tag} className="text-sm font-medium text-text-secondary">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                    <div className="hidden sm:flex w-12 h-12 shrink-0 rounded-full border border-border items-center justify-center group-hover:border-accent group-hover:bg-accent transition-all duration-300 group-hover:scale-110">
+                      <ArrowUpRight size={20} className="text-text-secondary group-hover:text-bg transition-colors" />
+                    </div>
                   </div>
                 </motion.a>
               ))}
