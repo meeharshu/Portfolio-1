@@ -77,21 +77,32 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         category: 'Frontend Framework',
         description: 'A JavaScript library for building component-based user interfaces.',
         application: 'Reusable components, state-driven UI and interactive web applications.',
-        proficiency: 'Confident'
+        proficiency: 'Confident',
+        icon: '/logo/react.png'
       },
       {
         name: 'TypeScript',
         category: 'Programming Language',
         description: 'A typed superset of JavaScript that helps make applications more maintainable.',
         application: 'Type-safe components, interfaces and predictable application architecture.',
-        proficiency: 'Confident'
+        proficiency: 'Confident',
+        icon: '/logo/ts.png'
       },
       {
         name: 'JavaScript',
         category: 'Programming Language',
         description: 'A programming language used to create interactive and dynamic web experiences.',
         application: 'DOM manipulation, asynchronous operations, application logic and frontend interactions.',
-        proficiency: 'Confident'
+        proficiency: 'Confident',
+        icon: '/logo/js.png'
+      },
+      {
+        name: 'Next.js',
+        category: 'React Framework',
+        description: 'The React framework for production.',
+        application: 'Server-side rendering, static site generation, and optimized performance.',
+        proficiency: 'Confident',
+        icon: '/logo/next.png'
       },
       {
         name: 'HTML5',
@@ -106,13 +117,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         description: 'The language used for describing the presentation of a document written in HTML.',
         application: 'Layout, typography, responsive breakpoints and foundational visual design.',
         proficiency: 'Confident'
-      },
-      {
-        name: 'Responsive Design',
-        category: 'Design Approach',
-        description: 'An approach to web design that makes web pages render well on a variety of devices.',
-        application: 'Fluid grids, flexible images and media queries for mobile-first development.',
-        proficiency: 'Confident'
       }
     ]
   },
@@ -125,27 +129,30 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         category: 'CSS Framework',
         description: 'A utility-first CSS framework packed with classes to build any design, directly in markup.',
         application: 'Rapid UI development, consistent design tokens and maintainable styling.',
-        proficiency: 'Confident'
+        proficiency: 'Confident',
+        icon: '/logo/tailwind.png'
       },
       {
-        name: 'CSS Animations',
-        category: 'Web Technology',
-        description: 'Native CSS capabilities to animate transitions from one CSS style configuration to another.',
-        application: 'Lightweight hover states, infinite loops and simple UI feedback.',
-        proficiency: 'Confident'
+        name: 'Sass',
+        category: 'CSS Preprocessor',
+        description: 'A preprocessor scripting language that is interpreted or compiled into Cascading Style Sheets.',
+        application: 'Modular CSS, variables, and nested styles.',
+        proficiency: 'Confident',
+        icon: '/logo/sass.png'
+      },
+      {
+        name: 'Bootstrap',
+        category: 'CSS Framework',
+        description: 'The most popular HTML, CSS, and JS library in the world.',
+        application: 'Rapid prototyping and grid layouts.',
+        proficiency: 'Confident',
+        icon: '/logo/bootstrap.svg'
       },
       {
         name: 'UI/UX Principles',
         category: 'Design Discipline',
         description: 'Foundational concepts for creating user-centric, friction-less digital experiences.',
         application: 'User flows, visual hierarchy, spacing systems and cognitive load reduction.',
-        proficiency: 'Learning'
-      },
-      {
-        name: 'Design Systems',
-        category: 'Architecture',
-        description: 'A collection of reusable components guided by clear standards to build digital products.',
-        application: 'Component libraries, design tokens and consistent visual languages.',
         proficiency: 'Learning'
       }
     ]
@@ -159,7 +166,16 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         category: 'Animation Library',
         description: 'A JavaScript animation library for creating precise, timeline-based motion.',
         application: 'Complex timelines, staggered reveals, transitions and interactive visual experiences.',
-        proficiency: 'Learning'
+        proficiency: 'Learning',
+        icon: '/logo/gsap.png'
+      },
+      {
+        name: 'Framer Motion',
+        category: 'React Animation Library',
+        description: 'A production-ready motion library for React that utilizes spring physics.',
+        application: 'Layout animations, exit transitions, drag interactions and gesture recognition.',
+        proficiency: 'Confident',
+        icon: '/logo/framer-motion.png'
       },
       {
         name: 'ScrollTrigger',
@@ -167,13 +183,6 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         description: 'A GSAP plugin that enables scroll-based animations with minimal code.',
         application: 'Pinning sections, scrub animations and viewport-triggered effects.',
         proficiency: 'Learning'
-      },
-      {
-        name: 'Framer Motion',
-        category: 'React Animation Library',
-        description: 'A production-ready motion library for React that utilizes spring physics.',
-        application: 'Layout animations, exit transitions, drag interactions and gesture recognition.',
-        proficiency: 'Confident'
       },
       {
         name: 'Lenis',
@@ -193,28 +202,32 @@ export const SKILL_CATEGORIES: SkillCategory[] = [
         category: 'Version Control',
         description: 'A distributed version control system for tracking changes in source code.',
         application: 'Branching strategies, commit history and codebase management.',
-        proficiency: 'Confident'
+        proficiency: 'Confident',
+        icon: '/logo/git.png'
       },
       {
         name: 'GitHub',
         category: 'Development Platform',
         description: 'A provider of Internet hosting for software development and version control.',
         application: 'Pull requests, code reviews, collaboration and actions.',
-        proficiency: 'Confident'
+        proficiency: 'Confident',
+        icon: '/logo/github.png'
       },
       {
-        name: 'Vite',
-        category: 'Build Tool',
-        description: 'A next-generation frontend tooling that provides a faster and leaner development experience.',
-        application: 'Lightning fast HMR, optimized builds and modern module resolution.',
-        proficiency: 'Confident'
+        name: 'Node.js',
+        category: 'Runtime Environment',
+        description: 'An asynchronous event-driven JavaScript runtime.',
+        application: 'Backend services, APIs, and tooling.',
+        proficiency: 'Confident',
+        icon: '/logo/node.png'
       },
       {
-        name: 'Figma',
-        category: 'Design Tool',
-        description: 'A collaborative web application for interface design and prototyping.',
-        application: 'Wireframing, UI prototyping, asset extraction and developer handoff.',
-        proficiency: 'Familiar'
+        name: 'Express.js',
+        category: 'Backend Framework',
+        description: 'Fast, unopinionated, minimalist web framework for Node.js.',
+        application: 'REST APIs and server routing.',
+        proficiency: 'Confident',
+        icon: '/logo/express.png'
       }
     ]
   }

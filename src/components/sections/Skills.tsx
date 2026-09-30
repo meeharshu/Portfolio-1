@@ -51,9 +51,13 @@ export default function Skills() {
                     className="flex gap-3 items-center"
                     key={skill.name}
                   >
-                    <div className="w-10 h-10 rounded-full bg-surface/50 border border-white/5 flex items-center justify-center text-accent">
-                      <LucideIcons.Check size={18} />
-                    </div>
+                    {skill.icon ? (
+                      <img src={skill.icon} alt={skill.name} className="w-10 h-10 object-contain" />
+                    ) : (
+                      <div className="w-10 h-10 rounded-full bg-surface/50 border border-white/5 flex items-center justify-center text-accent">
+                        <LucideIcons.Check size={18} />
+                      </div>
+                    )}
                     <span className="text-xl md:text-2xl font-medium text-text-primary">
                       {skill.name}
                     </span>

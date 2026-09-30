@@ -21,6 +21,7 @@ export interface SkillDetail {
   description: string;
   application: string;
   proficiency: 'Learning' | 'Confident' | 'Familiar';
+  icon?: string;
 }
 
 export interface SkillCategory {
