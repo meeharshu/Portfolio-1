@@ -112,9 +112,13 @@ export default function Hero() {
               Hi, I'm {PROFILE_DATA.name}. I craft premium, interactive web experiences that bridge the gap between profound design and robust engineering.
             </p>
             
-            <GlassyButton href="#work" className="mt-4 md:mt-0">
-              <span className="font-display text-xs sm:text-sm tracking-wider uppercase font-semibold text-text-primary">Explore Work</span>
-              <div className="w-7 h-7 rounded-full bg-accent/20 text-accent flex items-center justify-center transition-colors">
+            <GlassyButton 
+              href="#work" 
+              className="mt-4 md:mt-0"
+              surfaceColor="#ffffff"
+            >
+              <span className="font-display text-xs sm:text-sm tracking-wider uppercase font-bold text-bg">Explore Now</span>
+              <div className="w-7 h-7 rounded-full bg-bg/15 text-bg flex items-center justify-center transition-colors">
                 <ArrowDownRight size={14} className="group-hover:rotate-[-45deg] transition-transform duration-500" />
               </div>
             </GlassyButton>
