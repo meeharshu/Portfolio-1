@@ -282,7 +282,7 @@ export const JOURNEY_ITEMS: JourneyItem[] = [
 export const SOCIAL_LINKS = {
   github: 'https://github.com/meeharshu',
   linkedin: '#', // Placeholder — update with real URL
-  email: 'hello@harshu.dev', // Placeholder — update with real email
+  email: 'iykharshu8685@gmail.com', // Placeholder — update with real email
   twitter: '#',
 };
 

@@ -102,9 +102,9 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 w-full z-[100] transition-all duration-500 ${
+        className={`fixed top-4 left-1/2 -translate-x-1/2 w-[95%] max-w-5xl z-[100] transition-all duration-500 rounded-full ${
           scrolled
-            ? 'bg-bg/80 backdrop-blur-xl border-b border-border'
+            ? 'bg-bg/50 backdrop-blur-xl border border-border shadow-lg shadow-black/20'
             : 'bg-transparent'
         }`}
         role="navigation"

@@ -27,12 +27,11 @@ export default function Hero() {
   };
 
   const wordAnim = {
-    hidden: { opacity: 0, y: 80, rotateX: -60, filter: 'blur(12px)' },
+    hidden: { opacity: 0, y: 80, rotateX: -60 },
     visible: {
       opacity: 1,
       y: 0,
       rotateX: 0,
-      filter: 'blur(0px)',
       transition: { duration: 1.2, ease: [0.16, 1, 0.3, 1] as any },
     },
   };

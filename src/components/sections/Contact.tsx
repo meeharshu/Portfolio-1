@@ -63,8 +63,8 @@ export default function Contact() {
               href={`mailto:${SOCIAL_LINKS.email}`}
               surfaceColor="hsl(197, 88%, 58%)"
             >
-              <span className="font-display text-sm sm:text-base md:text-lg font-medium tracking-normal lowercase text-text-primary group-hover:text-bg transition-colors duration-300">
-                {SOCIAL_LINKS.email}
+              <span className="font-display text-sm sm:text-base md:text-lg font-medium tracking-normal capitalize text-text-primary group-hover:text-bg transition-colors duration-300">
+                Contact Now
               </span>
               <div className="flex items-center justify-center transition-colors duration-300">
                 <ArrowUpRight size={18} className="text-text-primary group-hover:text-bg group-hover:rotate-45 transition-all duration-300" />
@@ -81,40 +81,40 @@ export default function Contact() {
           >
             <a
               href={`mailto:${SOCIAL_LINKS.email}`}
-              className="flex flex-col items-center gap-4 p-8 bg-surface rounded-3xl border border-border hover:border-accent hover:bg-bg-card transition-all duration-300"
+              className="group flex flex-col items-center gap-4 p-8 bg-surface/40 backdrop-blur-md rounded-3xl border border-border hover:border-accent hover:-translate-y-2 hover:shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)] transition-all duration-500"
             >
-              <Mail size={32} className="text-text-muted" />
-              <span className="text-text-primary font-medium">Email</span>
+              <Mail size={32} className="text-text-muted group-hover:text-accent transition-colors duration-300" />
+              <span className="text-text-primary font-medium group-hover:text-accent transition-colors duration-300">Email</span>
             </a>
             
             <a
               href={SOCIAL_LINKS.github}
               target="_blank"
               rel="noreferrer"
-              className="flex flex-col items-center gap-4 p-8 bg-surface rounded-3xl border border-border hover:border-accent hover:bg-bg-card transition-all duration-300"
+              className="group flex flex-col items-center gap-4 p-8 bg-surface/40 backdrop-blur-md rounded-3xl border border-border hover:border-accent hover:-translate-y-2 hover:shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)] transition-all duration-500"
             >
-              <SiGithub size={32} className="text-text-muted" />
-              <span className="text-text-primary font-medium">GitHub</span>
+              <SiGithub size={32} className="text-text-muted group-hover:text-accent transition-colors duration-300" />
+              <span className="text-text-primary font-medium group-hover:text-accent transition-colors duration-300">GitHub</span>
             </a>
 
             <a
               href={SOCIAL_LINKS.linkedin}
               target="_blank"
               rel="noreferrer"
-              className="flex flex-col items-center gap-4 p-8 bg-surface rounded-3xl border border-border hover:border-accent hover:bg-bg-card transition-all duration-300"
+              className="group flex flex-col items-center gap-4 p-8 bg-surface/40 backdrop-blur-md rounded-3xl border border-border hover:border-accent hover:-translate-y-2 hover:shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)] transition-all duration-500"
             >
-              <SiLinkedin size={32} className="text-text-muted" />
-              <span className="text-text-primary font-medium">LinkedIn</span>
+              <SiLinkedin size={32} className="text-text-muted group-hover:text-accent transition-colors duration-300" />
+              <span className="text-text-primary font-medium group-hover:text-accent transition-colors duration-300">LinkedIn</span>
             </a>
 
             <a
               href={SOCIAL_LINKS.twitter}
               target="_blank"
               rel="noreferrer"
-              className="flex flex-col items-center gap-4 p-8 bg-surface rounded-3xl border border-border hover:border-accent hover:bg-bg-card transition-all duration-300"
+              className="group flex flex-col items-center gap-4 p-8 bg-surface/40 backdrop-blur-md rounded-3xl border border-border hover:border-accent hover:-translate-y-2 hover:shadow-[0_0_30px_-10px_rgba(0,240,255,0.3)] transition-all duration-500"
             >
-              <span className="text-3xl font-display font-bold text-text-muted">𝕏</span>
-              <span className="text-text-primary font-medium">Twitter</span>
+              <span className="text-3xl font-display font-bold text-text-muted group-hover:text-accent transition-colors duration-300">𝕏</span>
+              <span className="text-text-primary font-medium group-hover:text-accent transition-colors duration-300">Twitter</span>
             </a>
           </motion.div>
         </div>
