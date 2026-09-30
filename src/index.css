@@ -714,3 +714,149 @@ body {
 .card-electric-skills {
   --electric-border-color: #00F0FF;
 }
+
+/* ── Liquid Glass System ────────────────────────────────────────────── */
+.liquid-glass-container {
+  position: relative;
+  overflow: hidden;
+  border-radius: 2rem;
+  background: rgba(14, 16, 20, 0.75);
+  box-shadow: 
+    inset 1.5px 1.5px 0px -1px rgba(255, 255, 255, 0.4),
+    inset -1px -1px 0px -1px rgba(0, 240, 255, 0.25),
+    inset 0 0 16px 1px rgba(255, 255, 255, 0.04);
+}
+
+.liquid-glass-container::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  border-radius: inherit;
+  box-shadow: 
+    inset 2px 2px 0px -2px rgba(255, 255, 255, 0.7),
+    inset 0 0 4px 1px rgba(255, 255, 255, 0.3);
+  transition: opacity 0.5s ease;
+}
+
+.liquid-glass-container::after {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  inset: 0;
+  border-radius: inherit;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  -webkit-filter: url(#container-glass);
+  filter: url(#container-glass);
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+  background: radial-gradient(
+    circle at 50% 0%, 
+    rgba(0, 240, 255, 0.1) 0%, 
+    transparent 70%
+  );
+}
+
+/* Liquid animated flow shimmer */
+.liquid-glass-flow {
+  position: absolute;
+  inset: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(0, 240, 255, 0.07) 0%,
+    rgba(255, 255, 255, 0.03) 30%,
+    transparent 65%
+  );
+  animation: liquidFlow 14s linear infinite;
+  pointer-events: none;
+  z-index: 0;
+}
+
+@keyframes liquidFlow {
+  0% {
+    transform: rotate(0deg) translate(0, 0);
+  }
+  50% {
+    transform: rotate(180deg) translate(-4%, -4%);
+  }
+  100% {
+    transform: rotate(360deg) translate(0, 0);
+  }
+}
+
+/* Liquid Glass Button */
+.glassBtn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  width: 42px;
+  height: 42px;
+  padding: 10px;
+  background: transparent;
+  border-radius: 9999px;
+  outline: none;
+  border: none;
+  z-index: 10;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+}
+
+.glassBtn:hover {
+  transform: scale(1.12);
+}
+
+.glassBtn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  border-radius: 9999px;
+  box-shadow: 
+    inset 1.5px 1.5px 0px -1px rgba(255, 255, 255, 0.7), 
+    inset 0 0 3px 1px rgba(255, 255, 255, 0.5);
+  background-color: rgba(255, 255, 255, 0.08);
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.glassBtn:hover::before {
+  background-color: rgba(0, 240, 255, 0.25);
+  box-shadow: 
+    inset 1.5px 1.5px 0px -1px rgba(255, 255, 255, 0.9), 
+    inset 0 0 8px 2px rgba(0, 240, 255, 0.6);
+}
+
+.glassBtn::after {
+  content: '';
+  position: absolute;
+  z-index: -1;
+  inset: 0;
+  border-radius: 9999px;
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
+  -webkit-filter: url(#btn-glass);
+  filter: url(#btn-glass);
+  overflow: hidden;
+  isolation: isolate;
+  pointer-events: none;
+}
+
+.glassBtn svg {
+  width: 100%;
+  height: 100%;
+  stroke: #ffffff;
+  position: relative;
+  z-index: 1;
+  transition: transform 0.4s ease, stroke 0.3s ease;
+}
+
+.glassBtn:hover svg {
+  stroke: #00F0FF;
+  transform: rotate(45deg);
+}
