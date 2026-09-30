@@ -48,6 +48,12 @@ export default function Skills() {
 
   return (
     <section id="skills" className="relative bg-bg">
+      <svg width="0" height="0" className="absolute pointer-events-none">
+        <filter id="turbulent-displace">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" />
+        </filter>
+      </svg>
       {/* 
         This div is the scroll area. It needs to be tall enough to allow scrolling.
         We'll use 400vh to give a smooth, long scroll experience.
@@ -59,41 +65,55 @@ export default function Skills() {
             <SectionHeading number="02" title="Skills" />
           </div>
 
-          <motion.div ref={scrollRef} style={{ x }} className="flex gap-4 md:gap-8 px-4 sm:px-6 md:px-12 items-stretch mt-12 md:mt-24 w-max">
+          <motion.div ref={scrollRef} style={{ x }} className="flex gap-6 md:gap-10 px-4 sm:px-6 md:px-12 items-stretch mt-12 md:mt-24 w-max">
             {allSkills.map((skill, index) => (
-              <motion.button
+              <motion.div
                 key={skill.name}
                 initial={{ opacity: 0, scale: 0.9 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.5, delay: 0.1 }}
-                className="group relative text-left outline-none shrink-0 w-[280px] md:w-[400px] p-6 md:p-8 bg-surface/30 backdrop-blur-md border border-border/50 rounded-3xl hover:bg-surface/60 hover:border-accent/50 hover:-translate-y-2 transition-all duration-500 overflow-hidden flex flex-col justify-between"
+                className="card-container-electric card-electric-skills shrink-0 w-[280px] md:w-[380px] h-[400px] md:h-[440px] text-left outline-none cursor-pointer group transition-all duration-500 hover:-translate-y-2 flex flex-col"
                 onMouseEnter={() => setActiveSkill(skill)}
                 onMouseLeave={() => setActiveSkill(null)}
                 onFocus={() => setActiveSkill(skill)}
                 onBlur={() => setActiveSkill(null)}
+                tabIndex={0}
+                role="button"
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    setActiveSkill(skill);
+                  }
+                }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
-                
-                <div className="relative z-10">
-                  <div className="flex items-center justify-between mb-6">
-                    <span className="text-xs font-display tracking-widest text-accent uppercase">{skill.category}</span>
-                    <span className="text-xs font-medium text-bg px-2 py-1 bg-text-primary rounded">
-                      {skill.proficiency}
-                    </span>
-                  </div>
-                  <h4 className="text-2xl md:text-3xl font-display font-bold text-text-primary mb-4 group-hover:text-accent transition-colors duration-300">
-                    {skill.name}
-                  </h4>
-                  <p className="text-text-secondary leading-relaxed mb-8">
-                    {skill.description}
-                  </p>
-                </div>
+                <div className="inner-container-electric">
+                  <div className="border-outer-electric">
+                    <div className="main-card-electric p-6 md:p-8 flex flex-col justify-between h-full bg-surface/90 backdrop-blur-md">
+                      <div className="relative z-10">
+                        <div className="flex items-center justify-between mb-6">
+                          <span className="text-xs font-display tracking-widest text-[#00F0FF] uppercase">{skill.category}</span>
+                          <span className="text-xs font-medium text-bg px-2.5 py-1 bg-text-primary rounded-full">
+                            {skill.proficiency}
+                          </span>
+                        </div>
+                        <h4 className="text-2xl md:text-3xl font-display font-bold text-text-primary mb-4 group-hover:text-[#00F0FF] transition-colors duration-300">
+                          {skill.name}
+                        </h4>
+                        <p className="text-text-secondary leading-relaxed text-sm md:text-base">
+                          {skill.description}
+                        </p>
+                      </div>
 
-                <div className="relative z-10 w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:border-accent group-hover:bg-accent group-hover:text-bg transition-all duration-300 self-end mt-4">
-                  <LucideIcons.ArrowUpRight size={18} className="opacity-50 group-hover:opacity-100 transition-opacity duration-300" />
+                      <div className="relative z-10 w-10 h-10 rounded-full border border-border flex items-center justify-center group-hover:border-[#00F0FF] group-hover:bg-[#00F0FF] group-hover:text-bg transition-all duration-300 self-end mt-4">
+                        <LucideIcons.ArrowUpRight size={18} className="opacity-60 group-hover:opacity-100 transition-opacity duration-300" />
+                      </div>
+                    </div>
+                  </div>
                 </div>
-              </motion.button>
+                <div className="glow-layer-1-electric" />
+                <div className="glow-layer-2-electric" />
+                <div className="background-glow-electric" />
+              </motion.div>
             ))}
           </motion.div>
         </div>
@@ -114,7 +134,7 @@ export default function Skills() {
             }}
           >
             <p className="text-xs text-text-muted leading-relaxed">
-              <span className="text-accent font-medium block mb-2 text-sm">My POV / Application</span> 
+              <span className="text-[#00F0FF] font-medium block mb-2 text-sm">My POV / Application</span> 
               {activeSkill.application}
             </p>
           </motion.div>
@@ -138,7 +158,7 @@ export default function Skills() {
               <LucideIcons.X size={16} />
             </button>
             <div className="mt-4">
-              <span className="text-accent font-medium block mb-2 text-sm uppercase tracking-widest">My POV / Application</span> 
+              <span className="text-[#00F0FF] font-medium block mb-2 text-sm uppercase tracking-widest">My POV / Application</span> 
               <p className="text-sm text-text-secondary leading-relaxed bg-surface/50 p-4 rounded-xl">
                 {activeSkill.application}
               </p>
