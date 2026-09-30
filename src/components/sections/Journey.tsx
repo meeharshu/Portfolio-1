@@ -71,7 +71,7 @@ export default function Journey() {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    className="group flex-1 bg-surface/40 backdrop-blur-md border border-border/50 p-6 md:p-8 rounded-3xl ml-12 sm:ml-0 relative hover:border-accent/50 hover:bg-surface/60 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                    className="group flex-1 min-w-0 bg-surface/40 backdrop-blur-md border border-border/50 p-6 md:p-8 rounded-3xl ml-12 sm:ml-0 relative hover:border-accent/50 hover:bg-surface/60 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
                     {/* Mobile Timeline Dot & Line */}
@@ -94,11 +94,11 @@ export default function Journey() {
                           </span>
                         </div>
                         
-                        <h3 className="text-xl md:text-2xl font-display font-bold text-text-primary mb-4 group-hover:text-accent transition-colors duration-300">
+                        <h3 className="text-xl md:text-2xl font-display font-bold text-text-primary mb-4 group-hover:text-accent transition-colors duration-300 break-words whitespace-normal">
                           {item.title}
                         </h3>
                         
-                        <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-6 break-words">
+                        <p className="text-text-secondary text-base md:text-lg leading-relaxed mb-6 break-words whitespace-normal">
                           {item.description}
                         </p>
                       </div>

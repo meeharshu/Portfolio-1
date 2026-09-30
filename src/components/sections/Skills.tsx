@@ -35,7 +35,7 @@ export default function Skills() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, delay: catIdx * 0.1, ease: [0.16, 1, 0.3, 1] }}
-              className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16 items-start"
+              className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16 items-start min-w-0"
             >
               {/* Category Header */}
               <div className="flex flex-col gap-4">
@@ -46,7 +46,7 @@ export default function Skills() {
               </div>
 
               {/* Skills List */}
-              <div className="flex overflow-x-auto whitespace-nowrap gap-x-4 md:gap-x-6 pb-6 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]">
+              <div className="flex overflow-x-auto whitespace-nowrap gap-x-4 md:gap-x-6 pb-6 -mx-4 px-4 sm:-mx-6 sm:px-6 lg:mx-0 lg:px-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] min-w-0 w-full">
                 {category.skills.map((skill) => (
                   <button
                     key={skill.name}
