@@ -71,7 +71,7 @@ export default function Journey() {
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true, margin: "-50px" }}
-                    className="group flex-1 min-w-0 bg-surface/40 backdrop-blur-md border border-border/50 p-6 md:p-8 rounded-3xl ml-12 sm:ml-0 relative hover:border-accent/50 hover:bg-surface/60 hover:-translate-y-2 transition-all duration-500 overflow-hidden"
+                    className="group flex-1 min-w-0 bg-surface/40 backdrop-blur-md border border-border/50 p-6 md:p-8 rounded-3xl ml-12 sm:ml-0 relative hover:border-accent/50 hover:bg-surface/60 hover:-translate-y-2 transition-all duration-500"
                   >
                     <div className="absolute inset-0 bg-gradient-to-br from-accent/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-3xl pointer-events-none" />
                     {/* Mobile Timeline Dot & Line */}
@@ -85,8 +85,8 @@ export default function Journey() {
                       {item.year}
                     </div>
 
-                    <div className="flex flex-col h-full justify-between">
-                      <div>
+                    <div className="flex flex-col h-full justify-between min-w-0">
+                      <div className="min-w-0">
                         <div className="flex items-center gap-3 mb-4">
                           <span className={`w-2 h-2 rounded-full ${TYPE_COLORS[item.type]}`} />
                           <span className="text-xs uppercase tracking-widest font-medium text-text-muted">
