@@ -62,13 +62,15 @@ export default function Contact() {
             <MagneticButton>
               <a
                 href={`mailto:${SOCIAL_LINKS.email}`}
-                className="group relative inline-flex items-center justify-center gap-4 bg-accent px-10 py-6 rounded-full overflow-hidden"
+                className="group relative inline-flex items-center justify-center gap-6 border border-border px-10 py-6 rounded-full overflow-hidden transition-colors hover:border-accent/0"
               >
-                <span className="relative z-10 font-display text-xl sm:text-2xl font-bold text-bg group-hover:text-text-primary transition-colors duration-500">
+                <span className="relative z-10 font-display text-xl sm:text-2xl font-medium tracking-wide text-text-primary group-hover:text-bg transition-colors duration-500">
                   {SOCIAL_LINKS.email}
                 </span>
-                <ArrowUpRight size={28} className="relative z-10 text-bg group-hover:text-text-primary group-hover:rotate-45 transition-all duration-500" />
-                <div className="absolute inset-0 bg-surface translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-out" />
+                <div className="relative z-10 flex items-center justify-center transition-colors duration-500">
+                  <ArrowUpRight size={28} className="text-text-secondary group-hover:text-bg group-hover:rotate-45 transition-all duration-500" />
+                </div>
+                <div className="absolute inset-0 bg-accent translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
               </a>
             </MagneticButton>
           </motion.div>
