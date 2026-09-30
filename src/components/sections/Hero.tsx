@@ -1,7 +1,7 @@
 import { useRef, lazy, Suspense } from 'react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowDownRight, Globe } from 'lucide-react';
-import MagneticButton from '../ui/MagneticButton';
+import GlassyButton from '../ui/GlassyButton';
 import { PROFILE_DATA } from '../../data';
 
 const HeroScene = lazy(() => import('../three/HeroScene'));
@@ -112,17 +112,12 @@ export default function Hero() {
               Hi, I'm {PROFILE_DATA.name}. I craft premium, interactive web experiences that bridge the gap between profound design and robust engineering.
             </p>
             
-            <MagneticButton>
-              <a 
-                href="#work" 
-                className="group flex items-center gap-4 px-8 py-5 bg-text-primary text-bg font-bold rounded-full hover:bg-accent hover:text-bg transition-colors duration-500 overflow-hidden relative"
-              >
-                <span className="relative z-10 font-display text-lg tracking-wide uppercase">Explore Work</span>
-                <div className="relative z-10 w-10 h-10 rounded-full bg-bg/20 flex items-center justify-center group-hover:bg-bg/40 transition-colors">
-                  <ArrowDownRight size={20} className="group-hover:rotate-[-45deg] transition-transform duration-500" />
-                </div>
-              </a>
-            </MagneticButton>
+            <GlassyButton href="#work" className="mt-4 md:mt-0">
+              <span className="font-display text-lg tracking-wide uppercase font-bold text-text-primary">Explore Work</span>
+              <div className="w-10 h-10 rounded-full bg-accent/20 text-accent flex items-center justify-center transition-colors">
+                <ArrowDownRight size={20} className="group-hover:rotate-[-45deg] transition-transform duration-500" />
+              </div>
+            </GlassyButton>
           </motion.div>
         </motion.div>
       </div>

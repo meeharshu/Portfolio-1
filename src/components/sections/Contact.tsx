@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { Mail, ArrowUpRight } from 'lucide-react';
 import { SiGithub, SiLinkedin } from './SocialIcons';
 import { SOCIAL_LINKS } from '../../data';
-import MagneticButton from '../ui/MagneticButton';
+import GlassyButton from '../ui/GlassyButton';
 
 export default function Contact() {
   const words = "Let's build something extraordinary together.".split(" ");
@@ -59,20 +59,17 @@ export default function Contact() {
             viewport={{ once: true, margin: "-100px" }}
             transition={{ duration: 0.8, delay: 0.2, ease: "easeOut" }}
           >
-            <MagneticButton>
-              <a
-                href={`mailto:${SOCIAL_LINKS.email}`}
-                className="group relative inline-flex items-center justify-center gap-6 border border-border px-10 py-6 rounded-full overflow-hidden transition-colors hover:border-accent/0"
-              >
-                <span className="relative z-10 font-display text-xl sm:text-2xl font-medium tracking-wide text-text-primary group-hover:text-bg transition-colors duration-500">
-                  {SOCIAL_LINKS.email}
-                </span>
-                <div className="relative z-10 flex items-center justify-center transition-colors duration-500">
-                  <ArrowUpRight size={28} className="text-text-secondary group-hover:text-bg group-hover:rotate-45 transition-all duration-500" />
-                </div>
-                <div className="absolute inset-0 bg-accent translate-y-[101%] group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
-              </a>
-            </MagneticButton>
+            <GlassyButton 
+              href={`mailto:${SOCIAL_LINKS.email}`}
+              surfaceColor="hsl(197, 88%, 58%)"
+            >
+              <span className="font-display text-xl sm:text-2xl font-medium tracking-wide text-text-primary group-hover:text-bg transition-colors duration-500">
+                {SOCIAL_LINKS.email}
+              </span>
+              <div className="flex items-center justify-center transition-colors duration-500">
+                <ArrowUpRight size={28} className="text-text-primary group-hover:text-bg group-hover:rotate-45 transition-all duration-500" />
+              </div>
+            </GlassyButton>
           </motion.div>
 
           <motion.div 
