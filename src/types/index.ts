@@ -15,10 +15,18 @@ export interface Project {
 }
 
 // ── Skill Types ───────────────────────────────────────────────────────
+export interface SkillDetail {
+  name: string;
+  category: string;
+  description: string;
+  application: string;
+  proficiency: 'Learning' | 'Confident' | 'Familiar';
+}
+
 export interface SkillCategory {
   title: string;
   icon: string;
-  skills: string[];
+  skills: SkillDetail[];
 }
 
 // ── Journey Types ─────────────────────────────────────────────────────

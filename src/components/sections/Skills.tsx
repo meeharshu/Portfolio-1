@@ -1,126 +1,142 @@
-import { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { SKILL_CATEGORIES } from '../../data';
+import type { SkillDetail } from '../../types';
 import SectionHeading from '../ui/SectionHeading';
-
-const ALL_SKILLS = [
-  // Core/Primary
-  { name: 'React', description: 'The foundation of my complex interactive UIs.' },
-  { name: 'TypeScript', description: 'My safety net for scalable and bug-free logic.' },
-  { name: 'Next.js', description: 'My preferred framework for production-grade React apps.' },
-  { name: 'Three.js', description: 'Where I turn math and logic into interactive 3D art.' },
-  { name: 'WebGL / GLSL', description: 'Writing custom shaders for ultimate visual control.' },
-  { name: 'GSAP', description: 'The absolute best tool for high-performance complex timelines.' },
-  { name: 'Framer Motion', description: 'My favorite for fluid, physics-based React micro-interactions.' },
-  // Languages & Frameworks
-  { name: 'JavaScript', description: 'The core language I bend to my will every single day.' },
-  { name: 'Tailwind CSS', description: 'Rapid, systemic styling without the CSS bloat.' },
-  { name: 'CSS Animations', description: 'Using native CSS for lightweight, butter-smooth motion.' },
-  { name: 'Svelte', description: 'Exploring its compiler-first approach to reactivity.' },
-  { name: 'Vue.js', description: 'Appreciating its incredibly clean, progressive ecosystem.' },
-  // Fundamentals
-  { name: 'HTML5', description: 'Semantic, accessible structures are my baseline.' },
-  { name: 'CSS3', description: 'Pushing modern layout capabilities to their absolute limits.' },
-  { name: 'SCSS / Sass', description: 'Organizing massive stylesheets with programmatic power.' },
-  // Design
-  { name: 'Figma', description: 'Where all my ideas are born and prototyped before coding.' },
-  { name: 'UI/UX Principles', description: 'Focusing on user psychology and friction-less flows.' },
-  { name: 'Design Systems', description: 'Building scalable, token-based visual languages.' },
-  { name: 'Accessibility (a11y)', description: 'Ensuring my work can be experienced by absolutely everyone.' },
-  // Tooling
-  { name: 'Vite', description: 'My insanely fast, modern build tool of choice.' },
-  { name: 'Webpack', description: 'Understanding the deep mechanics of legacy and modern bundling.' },
-  { name: 'Docker', description: 'Containerizing environments for zero-friction deployments.' },
-  { name: 'CI/CD', description: 'Automating testing and delivery for rapid iteration.' },
-  { name: 'Git & GitHub', description: 'My source of truth and collaborative backbone.' },
-  { name: 'Vercel', description: 'The perfect edge network for hosting my frontend experiments.' },
-  { name: 'Netlify', description: 'Reliable, fast, and simple deployment automation.' }
-];
-
-const ROW_1 = ALL_SKILLS.slice(0, 9);
-const ROW_2 = ALL_SKILLS.slice(9, 18);
-const ROW_3 = ALL_SKILLS.slice(18);
+import * as LucideIcons from 'lucide-react';
 
 export default function Skills() {
-  const targetRef = useRef<HTMLDivElement>(null);
-  
-  const { scrollYProgress } = useScroll({
-    target: targetRef,
-  });
+  const [activeSkill, setActiveSkill] = useState<SkillDetail | null>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
 
-  // Translates the container horizontally based on vertical scroll
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
+  // Update mouse position for the popover
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      setMousePos({ x: e.clientX, y: e.clientY });
+    };
+    if (activeSkill) {
+      window.addEventListener('mousemove', handleMouseMove);
+    }
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+    };
+  }, [activeSkill]);
 
   return (
-    <section id="skills" ref={targetRef} className="relative h-[250vh]">
-      <div className="sticky top-0 h-screen flex flex-col justify-center overflow-hidden bg-bg">
-        
-        {/* Fixed Header */}
-        <div className="absolute top-24 md:top-32 left-0 w-full px-4 sm:px-6 container mx-auto right-0 z-10 pointer-events-none">
-          <SectionHeading number="02" title="Skills" />
-        </div>
+    <section id="skills" className="section-padding relative">
+      <div className="container px-4 sm:px-6">
+        <SectionHeading number="02" title="Skills" />
 
-        {/* Horizontally scrolling content */}
-        <motion.div 
-          style={{ x }} 
-          className="flex flex-col gap-10 md:gap-16 px-4 sm:px-6 lg:px-[10vw] mt-16 w-max"
-        >
-          {/* Row 1 */}
-          <div className="flex gap-10 md:gap-16">
-            {ROW_1.map((skill) => (
-              <SkillChip key={skill.name} skill={skill} />
-            ))}
-          </div>
-          
-          {/* Row 2 (Staggered) */}
-          <div className="flex gap-10 md:gap-16 ml-32 md:ml-64">
-            {ROW_2.map((skill) => (
-              <SkillChip key={skill.name} skill={skill} />
-            ))}
-          </div>
-          
-          {/* Row 3 (Staggered) */}
-          <div className="flex gap-10 md:gap-16 ml-16 md:ml-32">
-            {ROW_3.map((skill) => (
-              <SkillChip key={skill.name} skill={skill} />
-            ))}
-          </div>
-        </motion.div>
-        
-        {/* Progress bar */}
-        <div className="absolute bottom-10 left-1/2 -translate-x-1/2 w-48 h-1 bg-border rounded-full overflow-hidden">
-          <motion.div 
-            className="h-full bg-accent origin-left"
-            style={{ scaleX: scrollYProgress }}
-          />
+        <div className="mt-16 lg:mt-24 flex flex-col gap-16 md:gap-24">
+          {SKILL_CATEGORIES.map((category, catIdx) => (
+            <motion.div 
+              key={category.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ duration: 0.6, delay: catIdx * 0.1, ease: [0.16, 1, 0.3, 1] }}
+              className="grid grid-cols-1 lg:grid-cols-[1fr_2fr] gap-8 lg:gap-16 items-start"
+            >
+              {/* Category Header */}
+              <div className="flex flex-col gap-4">
+                <div className="w-8 h-[1px] bg-accent mb-2" />
+                <h3 className="text-xl md:text-2xl font-display font-bold text-text-primary">
+                  {category.title}
+                </h3>
+              </div>
+
+              {/* Skills List */}
+              <div className="flex flex-wrap gap-x-8 gap-y-4 md:gap-x-12 md:gap-y-6">
+                {category.skills.map((skill) => (
+                  <button
+                    key={skill.name}
+                    className="group relative text-left outline-none"
+                    onMouseEnter={() => setActiveSkill(skill)}
+                    onMouseLeave={() => setActiveSkill(null)}
+                    onFocus={() => setActiveSkill(skill)}
+                    onBlur={() => setActiveSkill(null)}
+                  >
+                    <span className="text-lg md:text-xl font-medium text-text-secondary group-hover:text-text-primary transition-colors duration-300">
+                      {skill.name}
+                    </span>
+                    <span className="absolute -bottom-1 left-0 w-full h-[1px] bg-accent origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500 ease-out" />
+                  </button>
+                ))}
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
-    </section>
-  );
-}
 
-function SkillChip({ skill }: { skill: { name: string; description: string } }) {
-  return (
-    <motion.div 
-      className="group flex flex-col justify-center px-8 py-5 md:px-12 md:py-8 bg-surface/30 border border-border rounded-full hover:bg-accent hover:border-accent transition-colors duration-500 backdrop-blur-md cursor-default shrink-0 overflow-hidden"
-      layout
-      transition={{ layout: { type: "spring", stiffness: 300, damping: 30 } }}
-    >
-      <motion.div layout="position" className="flex items-center gap-4">
-        <div className="w-3 h-3 md:w-4 md:h-4 rounded-full bg-accent group-hover:bg-bg transition-colors duration-500 shrink-0" />
-        <span className="text-3xl md:text-5xl font-display font-bold text-text-primary group-hover:text-bg transition-colors duration-500 whitespace-nowrap">
-          {skill.name}
-        </span>
-      </motion.div>
-      
-      <motion.div 
-        className="grid grid-rows-[0fr] group-hover:grid-rows-[1fr] transition-[grid-template-rows] duration-500 ease-out"
-      >
-        <div className="overflow-hidden">
-          <p className="text-bg/80 font-medium text-lg mt-3 pr-4">
-            {skill.description}
-          </p>
-        </div>
-      </motion.div>
-    </motion.div>
+      {/* Floating Popover (Desktop) */}
+      <AnimatePresence>
+        {activeSkill && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95, y: 10 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.95, y: 5 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
+            className="fixed pointer-events-none z-[100] hidden md:flex flex-col gap-3 w-80 bg-bg-elevated border border-border p-6 rounded-lg shadow-2xl"
+            style={{
+              left: Math.min(mousePos.x + 20, typeof window !== 'undefined' ? window.innerWidth - 340 : 0),
+              top: Math.min(mousePos.y + 20, typeof window !== 'undefined' ? window.innerHeight - 200 : 0),
+            }}
+          >
+            <div className="flex items-center justify-between">
+              <span className="label text-accent">{activeSkill.category}</span>
+              <span className="text-xs font-medium text-text-muted px-2 py-1 bg-surface rounded">
+                {activeSkill.proficiency}
+              </span>
+            </div>
+            <h4 className="text-xl font-display font-bold text-text-primary">
+              {activeSkill.name}
+            </h4>
+            <p className="text-sm text-text-secondary leading-relaxed">
+              {activeSkill.description}
+            </p>
+            <div className="w-full h-[1px] bg-border my-1" />
+            <p className="text-xs text-text-muted">
+              <span className="text-text-secondary">Applies to:</span> {activeSkill.application}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Mobile Popover Overlay */}
+      <AnimatePresence>
+        {activeSkill && (
+          <motion.div
+            initial={{ opacity: 0, y: "100%" }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: "100%" }}
+            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+            className="fixed inset-x-0 bottom-0 z-[100] md:hidden bg-bg-elevated border-t border-border p-6 rounded-t-2xl shadow-2xl"
+          >
+            <button 
+              onClick={() => setActiveSkill(null)}
+              className="absolute top-4 right-4 p-2 text-text-muted hover:text-text-primary"
+            >
+              <LucideIcons.X size={20} />
+            </button>
+            <div className="flex items-center gap-3 mb-4 mt-2">
+              <span className="label text-accent">{activeSkill.category}</span>
+              <span className="text-xs font-medium text-bg px-2 py-1 bg-text-primary rounded">
+                {activeSkill.proficiency}
+              </span>
+            </div>
+            <h4 className="text-2xl font-display font-bold text-text-primary mb-3">
+              {activeSkill.name}
+            </h4>
+            <p className="text-base text-text-secondary leading-relaxed mb-4">
+              {activeSkill.description}
+            </p>
+            <p className="text-sm text-text-muted bg-surface p-3 rounded">
+              <span className="text-text-secondary block mb-1 font-medium">Core Application:</span> 
+              {activeSkill.application}
+            </p>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </section>
   );
 }

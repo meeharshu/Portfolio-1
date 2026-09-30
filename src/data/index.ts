@@ -69,58 +69,155 @@ export const PROJECTS: Project[] = [
 // ── Skills ────────────────────────────────────────────────────────────
 export const SKILL_CATEGORIES: SkillCategory[] = [
   {
-    title: 'Frontend',
+    title: 'Frontend Development',
     icon: 'code',
     skills: [
-      'HTML5',
-      'CSS3',
-      'JavaScript',
-      'TypeScript',
-      'React',
-      'Next.js',
-      'Vue.js',
-      'Svelte',
-    ],
+      {
+        name: 'React',
+        category: 'Frontend Framework',
+        description: 'A JavaScript library for building component-based user interfaces.',
+        application: 'Reusable components, state-driven UI and interactive web applications.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'TypeScript',
+        category: 'Programming Language',
+        description: 'A typed superset of JavaScript that helps make applications more maintainable.',
+        application: 'Type-safe components, interfaces and predictable application architecture.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'JavaScript',
+        category: 'Programming Language',
+        description: 'A programming language used to create interactive and dynamic web experiences.',
+        application: 'DOM manipulation, asynchronous operations, application logic and frontend interactions.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'HTML5',
+        category: 'Markup Language',
+        description: 'The standard markup language for documents designed to be displayed in a web browser.',
+        application: 'Semantic document structure, accessibility and base web content.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'CSS3',
+        category: 'Style Sheet Language',
+        description: 'The language used for describing the presentation of a document written in HTML.',
+        application: 'Layout, typography, responsive breakpoints and foundational visual design.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'Responsive Design',
+        category: 'Design Approach',
+        description: 'An approach to web design that makes web pages render well on a variety of devices.',
+        application: 'Fluid grids, flexible images and media queries for mobile-first development.',
+        proficiency: 'Confident'
+      }
+    ]
   },
   {
-    title: 'Styling & Animation',
+    title: 'Styling & UI',
     icon: 'palette',
     skills: [
-      'Tailwind CSS',
-      'SCSS / Sass',
-      'CSS Animations',
-      'GSAP',
-      'Motion',
-      'Three.js',
-      'WebGL / GLSL',
-    ],
+      {
+        name: 'Tailwind CSS',
+        category: 'CSS Framework',
+        description: 'A utility-first CSS framework packed with classes to build any design, directly in markup.',
+        application: 'Rapid UI development, consistent design tokens and maintainable styling.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'CSS Animations',
+        category: 'Web Technology',
+        description: 'Native CSS capabilities to animate transitions from one CSS style configuration to another.',
+        application: 'Lightweight hover states, infinite loops and simple UI feedback.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'UI/UX Principles',
+        category: 'Design Discipline',
+        description: 'Foundational concepts for creating user-centric, friction-less digital experiences.',
+        application: 'User flows, visual hierarchy, spacing systems and cognitive load reduction.',
+        proficiency: 'Learning'
+      },
+      {
+        name: 'Design Systems',
+        category: 'Architecture',
+        description: 'A collection of reusable components guided by clear standards to build digital products.',
+        application: 'Component libraries, design tokens and consistent visual languages.',
+        proficiency: 'Learning'
+      }
+    ]
+  },
+  {
+    title: 'Animation & Interaction',
+    icon: 'sparkles',
+    skills: [
+      {
+        name: 'GSAP',
+        category: 'Animation Library',
+        description: 'A JavaScript animation library for creating precise, timeline-based motion.',
+        application: 'Complex timelines, staggered reveals, transitions and interactive visual experiences.',
+        proficiency: 'Learning'
+      },
+      {
+        name: 'ScrollTrigger',
+        category: 'GSAP Plugin',
+        description: 'A GSAP plugin that enables scroll-based animations with minimal code.',
+        application: 'Pinning sections, scrub animations and viewport-triggered effects.',
+        proficiency: 'Learning'
+      },
+      {
+        name: 'Framer Motion',
+        category: 'React Animation Library',
+        description: 'A production-ready motion library for React that utilizes spring physics.',
+        application: 'Layout animations, exit transitions, drag interactions and gesture recognition.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'Lenis',
+        category: 'Smooth Scrolling',
+        description: 'A lightweight smooth scroll library created by Studio Freight.',
+        application: 'Buttery smooth native scrolling and scrolljacking synchronization.',
+        proficiency: 'Confident'
+      }
+    ]
   },
   {
     title: 'Tools & Workflow',
     icon: 'wrench',
     skills: [
-      'Git & GitHub',
-      'Vite',
-      'Webpack',
-      'npm / pnpm',
-      'Docker',
-      'CI/CD',
-      'Vercel',
-      'Netlify',
-    ],
-  },
-  {
-    title: 'Design & Prototyping',
-    icon: 'figma',
-    skills: [
-      'Figma',
-      'Adobe XD',
-      'Responsive Design',
-      'UI/UX Principles',
-      'Design Systems',
-      'Accessibility (a11y)',
-    ],
-  },
+      {
+        name: 'Git',
+        category: 'Version Control',
+        description: 'A distributed version control system for tracking changes in source code.',
+        application: 'Branching strategies, commit history and codebase management.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'GitHub',
+        category: 'Development Platform',
+        description: 'A provider of Internet hosting for software development and version control.',
+        application: 'Pull requests, code reviews, collaboration and actions.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'Vite',
+        category: 'Build Tool',
+        description: 'A next-generation frontend tooling that provides a faster and leaner development experience.',
+        application: 'Lightning fast HMR, optimized builds and modern module resolution.',
+        proficiency: 'Confident'
+      },
+      {
+        name: 'Figma',
+        category: 'Design Tool',
+        description: 'A collaborative web application for interface design and prototyping.',
+        application: 'Wireframing, UI prototyping, asset extraction and developer handoff.',
+        proficiency: 'Familiar'
+      }
+    ]
+  }
 ];
 
 // ── Journey ───────────────────────────────────────────────────────────
