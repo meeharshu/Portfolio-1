@@ -1,8 +1,9 @@
-import { useEffect } from 'react';
-import Lenis from '@studio-freight/lenis';
+import { useEffect, useState } from 'react';
+import { AnimatePresence } from 'framer-motion';
 import Navbar from './components/layout/Navbar';
 import Footer from './components/layout/Footer';
 import CustomCursor from './components/ui/CustomCursor';
+import Preloader from './components/ui/Preloader';
 import Hero from './components/sections/Hero';
 import About from './components/sections/About';
 import Work from './components/sections/Work';
@@ -11,6 +12,8 @@ import Journey from './components/sections/Journey';
 import Contact from './components/sections/Contact';
 
 export default function App() {
+  const [isLoading, setIsLoading] = useState(true);
+
   // Initialize Lenis smooth scrolling
   useEffect(() => {
     let lenisInstance: any;
@@ -52,24 +55,33 @@ export default function App() {
 
   return (
     <>
+      <AnimatePresence mode="wait">
+        {isLoading && (
+          <Preloader key="preloader" onComplete={() => setIsLoading(false)} />
+        )}
+      </AnimatePresence>
+
       <CustomCursor />
       <div className="noise-overlay" aria-hidden="true" />
-      <div>
-        <Navbar />
-        <main>
-          <Hero />
-          <div className="section-divider" />
-          <About />
-          <div className="section-divider" />
-          <Work />
-          <Skills />
-          <div className="section-divider" />
-          <Journey />
-          <div className="section-divider" />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      
+      {!isLoading && (
+        <div>
+          <Navbar />
+          <main>
+            <Hero />
+            <div className="section-divider" />
+            <About />
+            <div className="section-divider" />
+            <Work />
+            <Skills />
+            <div className="section-divider" />
+            <Journey />
+            <div className="section-divider" />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      )}
     </>
   );
 }
