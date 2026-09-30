@@ -1,0 +1,485 @@
+@import "tailwindcss";
+
+
+/* ── Design Tokens ──────────────────────────────────────────────────── */
+@theme {
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #111111;
+  --color-bg-card: #161616;
+  --color-bg-card-hover: #1c1c1c;
+  --color-surface: #1a1a1a;
+  --color-border: #222222;
+  --color-border-light: #2a2a2a;
+
+  --color-text-primary: #f0ece5;
+  --color-text-secondary: #8a8a8a;
+  --color-text-muted: #555555;
+  --color-text-accent: #C8FF00;
+
+  --color-accent: #C8FF00;
+  --color-accent-dim: rgba(200, 255, 0, 0.15);
+  --color-accent-glow: rgba(200, 255, 0, 0.08);
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out-expo: cubic-bezier(0.87, 0, 0.13, 1);
+  --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+:root {
+  --color-bg: #0a0a0a;
+  --color-bg-elevated: #111111;
+  --color-bg-card: #161616;
+  --color-bg-card-hover: #1c1c1c;
+  --color-surface: #1a1a1a;
+  --color-border: #222222;
+  --color-border-light: #2a2a2a;
+  --color-text-primary: #f0ece5;
+  --color-text-secondary: #8a8a8a;
+  --color-text-muted: #555555;
+  --color-text-accent: #C8FF00;
+  --color-accent: #C8FF00;
+  --color-accent-dim: rgba(200, 255, 0, 0.15);
+  --color-accent-glow: rgba(200, 255, 0, 0.08);
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+}
+
+/* ── Base Reset ─────────────────────────────────────────────────────── */
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: auto; /* Lenis handles smooth scrolling */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-bg);
+  color: var(--color-text-primary);
+  overflow-x: hidden;
+  line-height: 1.6;
+}
+
+/* ── Selection ──────────────────────────────────────────────────────── */
+::selection {
+  background-color: var(--color-accent);
+  color: var(--color-bg);
+}
+
+/* ── Scrollbar ──────────────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-light);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* ── Focus ──────────────────────────────────────────────────────────── */
+:focus-visible {
+  outline: 2px solid var(--color-accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+/* ── Typography Utilities ───────────────────────────────────────────── */
+.heading-xl {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 6vw + 1rem, 7rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  color: var(--color-text-primary);
+}
+
+.heading-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw + 0.5rem, 4.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.025em;
+  color: var(--color-text-primary);
+}
+
+.heading-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw + 0.5rem, 3rem);
+  font-weight: 600;
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: var(--color-text-primary);
+}
+
+.heading-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.5vw + 0.3rem, 1.5rem);
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: var(--color-text-primary);
+}
+
+.body-lg {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 1vw + 0.25rem, 1.25rem);
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+}
+
+.body-md {
+  font-family: var(--font-body);
+  font-size: clamp(0.875rem, 0.5vw + 0.5rem, 1rem);
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+}
+
+.label {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+/* ── Layout Utilities ───────────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 clamp(1.25rem, 4vw, 4rem);
+}
+
+.section-padding {
+  padding-top: clamp(4rem, 10vw, 10rem);
+  padding-bottom: clamp(4rem, 10vw, 10rem);
+}
+
+/* ── Noise Texture Overlay ──────────────────────────────────────────── */
+.noise-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 256px 256px;
+}
+
+/* ── Section Divider ────────────────────────────────────────────────── */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-border) 20%,
+    var(--color-border) 80%,
+    transparent 100%
+  );
+}
+
+/* ── Accent Dot ─────────────────────────────────────────────────────── */
+.accent-dot {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: var(--color-accent);
+}
+
+/* ── Reduced Motion ─────────────────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Preloader ──────────────────────────────────────────────────────── */
+.preloader {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--color-bg);
+}
+
+.preloader__text {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 3rem);
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  overflow: hidden;
+}
+
+.preloader__text span {
+  display: inline-block;
+}
+
+.preloader__bar-track {
+  width: 200px;
+  height: 2px;
+  background: var(--color-border);
+  margin-top: 2rem;
+  overflow: hidden;
+  border-radius: 1px;
+}
+
+.preloader__bar-fill {
+  width: 0%;
+  height: 100%;
+  background: var(--color-accent);
+  border-radius: 1px;
+}
+
+/* ── Custom Cursor (desktop only) ───────────────────────────────────── */
+@media (hover: hover) and (pointer: fine) {
+  .cursor-dot {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 8px;
+    height: 8px;
+    background-color: var(--color-accent);
+    border-radius: 50%;
+    pointer-events: none;
+    z-index: 9998;
+    mix-blend-mode: difference;
+    transform: translate(-50%, -50%);
+    transition: width 0.3s var(--ease-out-expo),
+                height 0.3s var(--ease-out-expo),
+                background-color 0.3s;
+  }
+
+  .cursor-dot.hovering {
+    width: 48px;
+    height: 48px;
+    background-color: rgba(200, 255, 0, 0.15);
+    border: 1px solid var(--color-accent);
+  }
+}
+
+/* ── Magnetic Button ────────────────────────────────────────────────── */
+.magnetic-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-bg);
+  background-color: var(--color-accent);
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  overflow: hidden;
+  transition: transform 0.4s var(--ease-out-expo);
+}
+
+.magnetic-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-color: var(--color-text-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.5s var(--ease-out-expo);
+}
+
+.magnetic-btn:hover::before {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+.magnetic-btn span {
+  position: relative;
+  z-index: 1;
+}
+
+.magnetic-btn-outline {
+  padding: 1rem 2rem;
+  font-family: var(--font-body);
+  font-size: 0.875rem;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+  color: var(--color-text-primary);
+  background: transparent;
+  border: 1px solid var(--color-border-light);
+  cursor: pointer;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.magnetic-btn-outline:hover {
+  border-color: var(--color-accent);
+  color: var(--color-accent);
+}
+
+/* ── Project Card ───────────────────────────────────────────────────── */
+.project-card {
+  position: relative;
+  overflow: hidden;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  transition: border-color 0.4s var(--ease-out-expo),
+              background 0.4s var(--ease-out-expo);
+}
+
+.project-card:hover {
+  border-color: var(--color-border-light);
+  background: var(--color-bg-card-hover);
+}
+
+.project-card__image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  overflow: hidden;
+  background: var(--color-surface);
+}
+
+.project-card__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.8s var(--ease-out-expo);
+}
+
+.project-card:hover .project-card__image {
+  transform: scale(1.05);
+}
+
+.project-card__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 40%, rgba(10, 10, 10, 0.8) 100%);
+  opacity: 0;
+  transition: opacity 0.5s var(--ease-out-expo);
+}
+
+.project-card:hover .project-card__overlay {
+  opacity: 1;
+}
+
+/* ── Skill Pill ─────────────────────────────────────────────────────── */
+.skill-pill {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.5rem 1.25rem;
+  font-family: var(--font-body);
+  font-size: 0.8125rem;
+  font-weight: 400;
+  color: var(--color-text-secondary);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border);
+  transition: all 0.35s var(--ease-out-expo);
+  cursor: default;
+}
+
+.skill-pill:hover {
+  color: var(--color-accent);
+  border-color: var(--color-accent);
+  background: var(--color-accent-dim);
+}
+
+/* ── Journey Item ───────────────────────────────────────────────────── */
+.journey-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-light);
+  background: var(--color-bg);
+  flex-shrink: 0;
+  transition: all 0.4s var(--ease-out-expo);
+}
+
+.journey-dot.milestone { border-color: var(--color-accent); }
+.journey-dot.project { border-color: #6366f1; }
+.journey-dot.learning { border-color: #f59e0b; }
+.journey-dot.goal { border-color: #10b981; }
+
+/* ── Tag ────────────────────────────────────────────────────────────── */
+.tag {
+  display: inline-block;
+  padding: 0.2rem 0.6rem;
+  font-size: 0.6875rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+  text-transform: uppercase;
+}
+
+/* ── Split Text Utility ─────────────────────────────────────────────── */
+.line-reveal {
+  overflow: hidden;
+  display: block;
+}
+
+.line-reveal > span {
+  display: inline-block;
+  transform: translateY(110%);
+}
+
+/* ── Canvas Container ───────────────────────────────────────────────── */
+.hero-canvas {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  z-index: 0;
+}
+
+@media (max-width: 1024px) {
+  .hero-canvas {
+    width: 100%;
+    height: 45%;
+    top: auto;
+    bottom: 0;
+    opacity: 0.5;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-canvas {
+    height: 35%;
+    opacity: 0.35;
+  }
+}
