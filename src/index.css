@@ -860,3 +860,59 @@ body {
   stroke: #00F0FF;
   transform: rotate(45deg);
 }
+
+/* ── Compact Electric Skill Cards ─────────────────────────────────── */
+.skill-card-compact {
+  position: relative;
+  border-radius: 0.875rem;
+  background-color: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              box-shadow 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              background-color 0.3s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  overflow: hidden;
+}
+
+.skill-card-compact:hover {
+  border-color: rgba(0, 240, 255, 0.65);
+  box-shadow: 0 0 16px -2px rgba(0, 240, 255, 0.25), inset 0 0 8px -2px rgba(0, 240, 255, 0.08);
+  background-color: rgba(0, 240, 255, 0.025);
+  transform: translateY(-2px);
+}
+
+.skill-card-compact.is-selected {
+  border-color: #00F0FF;
+  box-shadow: 0 0 22px -1px rgba(0, 240, 255, 0.35), inset 0 0 12px -2px rgba(0, 240, 255, 0.12);
+  background-color: rgba(0, 240, 255, 0.045);
+}
+
+/* Electric light sweep along top border on hover */
+.skill-card-compact::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 1.5px;
+  background: linear-gradient(90deg, transparent, #00F0FF, transparent);
+  transition: left 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  opacity: 0;
+  z-index: 2;
+}
+
+.skill-card-compact:hover::before,
+.skill-card-compact.is-selected::before {
+  left: 100%;
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .skill-card-compact,
+  .skill-card-compact::before {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
