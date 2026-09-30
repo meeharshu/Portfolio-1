@@ -109,6 +109,7 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
         </div>
       </div>
     </div>
+  </div>
     <div className="glow-layer-1-electric" />
     <div className="glow-layer-2-electric" />
     <div className="background-glow-electric" />
