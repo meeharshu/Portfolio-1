@@ -8,7 +8,9 @@ import type { SkillDetail } from '../../types';
 export default function Skills() {
   const [activeSkill, setActiveSkill] = useState<SkillDetail | null>(null);
   const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [scrollWidth, setScrollWidth] = useState(0);
   const targetRef = useRef<HTMLDivElement>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
   // Flatten all skills from categories
   const allSkills = SKILL_CATEGORIES.flatMap(category => category.skills);
@@ -26,14 +28,23 @@ export default function Skills() {
     };
   }, [activeSkill]);
 
+  useEffect(() => {
+    const handleResize = () => {
+      if (scrollRef.current) {
+        setScrollWidth(scrollRef.current.scrollWidth - window.innerWidth + 40); // 40px for some extra padding
+      }
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, [allSkills]);
+
   const { scrollYProgress } = useScroll({
     target: targetRef,
     offset: ["start start", "end end"]
   });
 
-  // Calculate translation. We want to scroll enough to see the last item.
-  // A simple way is to use a fixed width container and translate it by a percentage.
-  const x = useTransform(scrollYProgress, [0, 1], ["0%", "calc(-100% + 100vw)"]);
+  const x = useTransform(scrollYProgress, [0, 1], [0, -scrollWidth]);
 
   return (
     <section id="skills" className="relative bg-bg">
@@ -48,7 +59,7 @@ export default function Skills() {
             <SectionHeading number="02" title="Skills" />
           </div>
 
-          <motion.div style={{ x }} className="flex gap-4 md:gap-8 px-4 sm:px-6 md:px-12 items-stretch mt-12 md:mt-24 w-max">
+          <motion.div ref={scrollRef} style={{ x }} className="flex gap-4 md:gap-8 px-4 sm:px-6 md:px-12 items-stretch mt-12 md:mt-24 w-max">
             {allSkills.map((skill, index) => (
               <motion.button
                 key={skill.name}

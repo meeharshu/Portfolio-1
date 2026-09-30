@@ -16,17 +16,20 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-100px" }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: "easeOut" }}
-      className="group relative flex flex-col md:flex-row gap-8 lg:gap-12 bg-bg-card p-6 lg:p-8 rounded-[2rem] border border-border hover:border-accent/50 transition-colors duration-500 overflow-hidden"
+      className="card-container-electric"
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Background Hover Effect */}
-      <motion.div 
-        className="absolute inset-0 bg-accent-glow pointer-events-none"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: isHovered ? 1 : 0 }}
-        transition={{ duration: 0.4 }}
-      />
+      <div className="inner-container-electric">
+        <div className="border-outer-electric">
+          <div className="main-card-electric group flex flex-col md:flex-row gap-8 lg:gap-12 p-6 lg:p-8 transition-colors duration-500">
+            {/* Background Hover Effect */}
+            <motion.div 
+              className="absolute inset-0 bg-accent-glow pointer-events-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: isHovered ? 1 : 0 }}
+              transition={{ duration: 0.4 }}
+            />
 
       {/* Media Column */}
       <div className="w-full md:w-5/12 lg:w-1/2 rounded-2xl overflow-hidden relative">
@@ -103,7 +106,12 @@ function ProjectCard({ project, index }: { project: Project; index: number }) {
             </a>
           )}
         </div>
+        </div>
       </div>
+    </div>
+    <div className="glow-layer-1-electric" />
+    <div className="glow-layer-2-electric" />
+    <div className="background-glow-electric" />
     </motion.div>
   );
 }
@@ -114,7 +122,13 @@ export default function Work() {
   const others = PROJECTS.filter((p) => !p.featured);
 
   return (
-    <section id="work" className="section-padding">
+    <section id="work" className="section-padding relative">
+      <svg width="0" height="0" className="absolute">
+        <filter id="turbulent-displace">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="2" result="noise" />
+          <feDisplacementMap in="SourceGraphic" in2="noise" scale="5" />
+        </filter>
+      </svg>
       <div className="container px-4 sm:px-6">
         <SectionHeading number="01" title="Selected Works" />
 

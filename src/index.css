@@ -45,6 +45,10 @@
   --color-accent-glow: rgba(200, 255, 0, 0.08);
   --font-display: 'Space Grotesk', system-ui, sans-serif;
   --font-body: 'Inter', system-ui, sans-serif;
+
+  --electric-border-color: var(--color-accent);
+  --electric-light-color: oklch(from var(--electric-border-color) l c h);
+  --gradient-color: oklch(from var(--electric-border-color) 0.3 calc(c / 2) h / 0.4);
 }
 
 /* ── Base Reset ─────────────────────────────────────────────────────── */
@@ -486,7 +490,7 @@ body {
 
 /* ── Glassy Button ──────────────────────────────────────────────────── */
 .glassy-button {
-  --_padding: 1rem 2rem;
+  --_padding: 0.75rem 1.5rem;
   --_transition-speed: 200ms;
   --_hover-opacity: 0.4;
   --_pressed-opacity: 0.15;
@@ -510,7 +514,7 @@ body {
   position: relative;
   text-transform: uppercase;
   letter-spacing: 0.03em;
-  font-size: 0.875rem;
+  font-size: 0.8125rem;
 }
 
 .glassy-button span {
@@ -604,4 +608,99 @@ body {
   to {
     transform: translate(0, 0);
   }
+}
+
+/* ── Electric Border ────────────────────────────────────────────────── */
+.card-container-electric {
+  padding: 2px;
+  border-radius: 2rem;
+  position: relative;
+  background: linear-gradient(
+      -30deg,
+      var(--gradient-color),
+      transparent,
+      var(--gradient-color)
+    ),
+    linear-gradient(
+      to bottom,
+      var(--color-bg),
+      var(--color-bg)
+    );
+  z-index: 1;
+}
+
+.inner-container-electric {
+  position: relative;
+  border-radius: 2rem;
+  z-index: 2;
+  height: 100%;
+}
+
+.border-outer-electric {
+  border: 2px solid rgba(200, 255, 0, 0.5); /* Theme accent with opacity */
+  border-radius: 2rem;
+  padding-right: 4px;
+  padding-bottom: 4px;
+  height: 100%;
+}
+
+.main-card-electric {
+  border-radius: 2rem;
+  border: 2px solid var(--electric-border-color);
+  margin-top: -4px;
+  margin-left: -4px;
+  position: relative;
+  background-color: var(--color-bg-card);
+  overflow: hidden;
+  z-index: 3;
+  height: calc(100% + 4px);
+  width: calc(100% + 4px);
+  /* The SVG filter #turbulent-displace needs to be present in the DOM */
+  filter: url(#turbulent-displace);
+}
+
+.glow-layer-1-electric {
+  border: 2px solid rgba(200, 255, 0, 0.6);
+  border-radius: 2rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  filter: blur(1px);
+  z-index: 4;
+}
+
+.glow-layer-2-electric {
+  border: 2px solid var(--electric-light-color);
+  border-radius: 2rem;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  filter: blur(4px);
+  z-index: 5;
+}
+
+.background-glow-electric {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-radius: 2rem;
+  filter: blur(32px);
+  transform: scale(1.05);
+  opacity: 0.3;
+  z-index: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    -30deg,
+    var(--electric-light-color),
+    transparent,
+    var(--electric-border-color)
+  );
 }
